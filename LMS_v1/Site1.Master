@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="LMS_v1.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Library</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <form id="form1" runat="server">
+                <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+            <div class="container-fluid row">
+                <div class="d-flex  col-5">
+                    <div class="list-group">
+                        <h3 class="list-group-item disabled">AdminDashboard</h3>
+                        <a class="list-group-item list-group-item-action" href="~/admin/statics" runat="server">Statics</a>
+                        <a class="list-group-item list-group-item-action" href="~/admin/users" runat="server">Members</a>
+                        <a class="list-group-item list-group-item-action" href="~/admin/books" runat="server">Books</a>
+                        <a class="list-group-item list-group-item-action" href="~/admin/manageBooks" runat="server">Manage Books</a>
+                        <a class="list-group-item list-group-item-action" href="~/admin/logout" runat="server">Logout</a>
+                    </div>
+                </div>
+                <div class="col-8 container body-content">
+                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> jm
+                     </asp:ContentPlaceHolder>
+                </div>
+            </div>
+    </form>
+        <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
