@@ -32,7 +32,7 @@ namespace LMS_v1.Views
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("select*from books", cn);
+                SqlCommand cmd = new SqlCommand("select books.id,name,description,author,category_name from books,categories where books.category_id=categories.id;", cn);
                 da = new SqlDataAdapter(cmd);
                 ds = new DataSet();
                 StringBuilder bookCard = new StringBuilder();

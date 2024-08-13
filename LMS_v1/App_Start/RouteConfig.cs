@@ -10,10 +10,11 @@ namespace LMS_v1
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            /*var settings = new FriendlyUrlSettings();
+            var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
-            routes.EnableFriendlyUrls(settings);*/
+            routes.EnableFriendlyUrls(settings);
             routes.MapPageRoute("Login", "login", "~/Views/Login.aspx");
+            routes.MapPageRoute("Register", "register", "~/Views/Register.aspx");
             routes.MapPageRoute("HomeRoute", "", "~/views/Home.aspx");
             routes.MapPageRoute("books", "books", "~/Views/Home.aspx");
             routes.MapPageRoute("bookDetail","books/{id}","~/Views/BookDetail.aspx");
