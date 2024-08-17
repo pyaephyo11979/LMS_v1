@@ -19,7 +19,8 @@ namespace LMS_v1
             routes.MapPageRoute("books", "books", "~/Views/Home.aspx");
             routes.MapPageRoute("bookDetail","books/{id}","~/Views/BookDetail.aspx");
             routes.MapPageRoute("Users", "Users", "~/Customers.aspx");
-            routes.MapPageRoute("StaticsPage", "admin/statics", "~/Views/Admin/StaticsPage.aspx");
+            routes.MapPageRoute("StaticsPage", "admin/dashboard", "~/Views/Admin/Dashboard.aspx");
+            routes.MapPageRoute("Logout", "logout", "~/Views/Logout.aspx");
         }
     }
 }

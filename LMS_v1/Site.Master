@@ -11,7 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
+        <asp:ContentPlaceHolder runat="server" ID="header" ></asp:ContentPlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -47,15 +47,30 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">AboutUs</a></li>
+                        <% if (Session["user"] == null)
+                            {  %>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" >User</a>
                             <div class=" dropdown-menu dropdown-menu-end dropdown">
                                 <a class="dropdown-item" runat="server" href="~/login">Login</a>
                                 <a class="dropdown-item" runat="server" href="~/register">SignUp</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" runat="server" href="~/loginAdmin">Admin Login</a>
                             </div>
                         </li>
+                        <% }
+                            else
+                            {
+                                var user = (LMS_v1.Models.User)Session["user"]; %>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" ><%= user.username %></a>
+                            <div class=" dropdown-menu dropdown-menu-end dropdown">
+                                <a class="dropdown-item" runat="server" href="~/profile">Profile</a>
+                             <% if (user.role == "2"){  %>
+                                <a class="dropdown-item" runat="server" href="~/admin/dashboard">Admin Panel</a>
+                                <% } %>
+                                <a class="dropdown-item" runat="server" href="~/logout">Logout</a>
+                            </div>
+                        </li>
+                        <% } %>
                     </ul>
                 </div>
         </nav>

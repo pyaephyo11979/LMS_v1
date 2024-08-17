@@ -36,14 +36,14 @@
             </Scripts>
         </asp:ScriptManager>
             <div class="container-fluid row">
-                <div class="d-flex  col-5">
+                <div class="d-flex mt-2  col-5">
                     <div class="list-group">
-                        <h3 class="list-group-item disabled">AdminDashboard</h3>
-                        <a class="list-group-item list-group-item-action" href="~/admin/statics" runat="server">Statics</a>
+                        <h3 class="list-group-item disabled">AdminPanel</h3>
+                        <a class="list-group-item list-group-item-action" href="~/admin/dashboard" runat="server">Dashboard</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/users" runat="server">Members</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/books" runat="server">Books</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/manageBooks" runat="server">Manage Books</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/logout" runat="server">Logout</a>
+                        <a class="list-group-item list-group-item-action" href="~/logout" runat="server">Logout</a>
                     </div>
                 </div>
                 <div class="col-8 container body-content">

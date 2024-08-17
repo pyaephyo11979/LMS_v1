@@ -26,11 +26,11 @@
                     </div>
                     <div class="mt-2">
                         <label class="form-label">Enter Password</label>
-                        <asp:TextBox runat="server"  Width="" CssClass="form-control" ID="txtPsw" ></asp:TextBox>
+                        <asp:TextBox runat="server"  Width="" CssClass="form-control" TextMode="Password" ID="txtPsw" ></asp:TextBox>
                     </div>
                     <div class="mt-3">
                         <hr />
-                        <asp:Button ID="btnRegister"  CssClass="btn btn-outline-dark" runat="server" Text="Registers" />
+                        <asp:Button ID="btnRegister" OnClick="SignUp"  CssClass="btn btn-outline-dark" runat="server" Text="Register" />
                     </div>
                     <div class="mt-2">
                        <p>Already have an account, <a runat="server" class="text-decoration-none text-black d-inline" href="~/login">Login Here</a></p>
