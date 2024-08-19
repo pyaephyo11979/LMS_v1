@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LMS_v1
+namespace LMS_v1.Views
 {
 
 
-    public partial class _Default
+    public partial class BookDetail
     {
     }
 }

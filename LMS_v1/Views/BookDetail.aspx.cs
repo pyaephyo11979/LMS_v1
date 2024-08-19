@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace LMS_v1
+namespace LMS_v1.Views
 {
-    public partial class _Default : Page
+    public partial class BookDetail : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
