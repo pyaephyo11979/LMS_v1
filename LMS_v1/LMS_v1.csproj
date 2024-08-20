@@ -296,7 +296,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bookCovers\" />
+    <Folder Include="uploads\bookCovers\" />
+    <Folder Include="uploads\bookFiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

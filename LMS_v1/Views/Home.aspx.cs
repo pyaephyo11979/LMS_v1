@@ -52,7 +52,7 @@ namespace LMS_v1.Views
                         string categoryName= row["category_name"].ToString();
                         bookCard.Append($@"
                          <div class='card col-3 m-2'>
-                         <img src='/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
+                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
                          <div class='card-body'>
                          <h5 class='card-title'>{name}</h5>
                             <p class='card-text'>{author}</p>
