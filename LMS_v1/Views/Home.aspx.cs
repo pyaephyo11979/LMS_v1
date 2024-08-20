@@ -61,11 +61,12 @@ namespace LMS_v1.Views
                          </div>
                         </div>
                         ");
-                        bookdisplay.InnerHtml = bookCard.ToString();
+                        bookdisplay.InnerHtml += bookCard.ToString();
                     }
                 }
                 else
                 {
+                    bookdisplay.InnerHtml = "";
                     bookdisplay.InnerHtml = "<h1>No books available</h1>";
                 }
             }

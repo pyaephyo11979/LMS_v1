@@ -3,6 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <div></div>
+        <div class="card">
+            <div class="card-header">
+                <h3></h3>
+            </div>
+        </div>
     </div>
 </asp:Content>

@@ -54,7 +54,7 @@ namespace LMS_v1.Views.Admin
                 string description = txtBookDescription.Text;
                 string category_id = ddlCategory.SelectedValue;
                 string image = fuBookCover.FileName;
-                string path = Server.MapPath("~/bookCovers/") + image;
+                string path = Server.MapPath("~/uploads/bookCovers/") + image;
                 fuBookCover.PostedFile.SaveAs(path);
                 SqlCommand cmd = new SqlCommand("insert into books(name,author,description,category_id,image) values(@name,@author,@description,@category_id,@image)", conn);
                 cmd.Parameters.AddWithValue("@name", name);
