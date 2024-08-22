@@ -13,6 +13,8 @@ namespace LMS_v1.Models
         public string fullname { get; set; }
         public string role { get; set; }
         public string phone { get; set; }
+        public string planID { get; set; }
+        public string profileUrl { get; set; }
         public string status { get; set; }
     }
 }

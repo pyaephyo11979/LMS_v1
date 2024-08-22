@@ -1,53 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Security.Policy;
 using System.Text;
 using System.Web;
-using System.Web.Services.Description;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using WebGrease.Css.Ast.Selectors;
-using System.Configuration;
 using LMS_v1.Models;
+using System.Security.Cryptography;
 
 namespace LMS_v1.Views
 {
     public partial class Login : System.Web.UI.Page
     {
         protected SqlConnection cn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
+
         protected void connect()
         {
             try
             {
-                cn.Open();
+                if (cn.State == System.Data.ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Response.Write($"<script>alert('Database connection error: {ex.Message}');</script>");
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            connect();
+            if (!IsPostBack)
+            {
+                connect();
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            string email = txtEmail.Text.Trim();
+            string password = txtPsw.Text.Trim();
 
-            string email = txtEmail.Text;
-            string password = txtPsw.Text;
-            ValidateUser(email, password);
+            if (ValidateUser(email, password))
+            {
+                User user = getUserDetail(email);
+                Session["user"] = user;
+
+                if (user != null && user.role == "2") 
+                {
+                    Response.Redirect("~/admin/dashboard");
+                }
+                else
+                {
+                    Response.Redirect("~/");
+                }
+            }
+            else
+            {
+                ShowAlert("Invalid Email or Password");
+            }
         }
-        protected User  getUserDetail(string email)
+
+        protected User getUserDetail(string email)
         {
-                SqlCommand cmd = new SqlCommand("select*from users where email=@email", cn);
-                cmd.Parameters.AddWithValue("email", email);
+            User user = null;
+            try
+            {
+                connect();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE email=@Email", cn);
+                cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader rd = cmd.ExecuteReader();
-                User user = null;
-                while (rd.Read())
+
+                if (rd.Read())
                 {
                     user = new User
                     {
@@ -57,48 +80,81 @@ namespace LMS_v1.Views
                         fullname = rd["fullname"].ToString(),
                         phone = rd["phone"].ToString(),
                         role = rd["role_id"].ToString(),
+                        planID = rd["plan_id"].ToString(),
+                        profileUrl = rd["image"].ToString(),
                         status = rd["status"].ToString(),
                     };
                 }
-            rd.Close();
-                return user;
+                rd.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('Error retrieving user details: {ex.Message}');</script>");
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+            return user;
         }
-        private void ValidateUser(string email, string password)
+
+        private bool ValidateUser(string email, string password)
         {
+            bool isValid = false;
+
             try
             {
-                SqlCommand cmd = new SqlCommand("select * from users where email=@email", cn);
-                cmd.Parameters.AddWithValue("@email", email);
+                connect();
+                SqlCommand cmd = new SqlCommand("SELECT password FROM users WHERE email=@Email", cn);
+                cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader reader = cmd.ExecuteReader();
-                string psw = "";
-                while (reader.Read())
+
+                if (reader.Read())
                 {
-                    psw += reader["password"].ToString();
+                    string storedHashedPassword = reader["password"].ToString();
+                    string enteredHashedPassword = HashPassword(password);
+
+                    if (storedHashedPassword == enteredHashedPassword)
+                    {
+                        isValid = true;
+                    }
                 }
                 reader.Close();
-                if (password == psw)
-                {
-                    User user = getUserDetail(email);
-                    Session["user"] = user;
-                    Response.Redirect("~/");
-                    getUserDetail(email);
-                    cn.Close();
-                }
-                else
-                {
-                    cn.Close();
-                    Response.Redirect("~/login");
-                    StringBuilder alertB = new StringBuilder();
-                    alertB.Append("<script type='text/javascript'>" +
-                        "window.onload=function(){" +
-                        "alert('Invaild Email or Password');</script>");
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", alertB.ToString());
-                }
-
-            }catch(Exception ex)
-            {
-                Response.Write(ex.Message);
             }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('Error validating user: {ex.Message}');</script>");
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+            return isValid;
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
+        private void ShowAlert(string message)
+        {
+            StringBuilder alertScript = new StringBuilder();
+            alertScript.Append("<script type='text/javascript'>" +
+                $"alert('{message}');" +
+                "</script>");
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", alertScript.ToString());
         }
     }
 }

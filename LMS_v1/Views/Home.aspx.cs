@@ -33,7 +33,7 @@ namespace LMS_v1.Views
             try
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("select books.id,name,description,author,image,category_name from books,categories where books.category_id=categories.id;", cn);
+                SqlCommand cmd = new SqlCommand("select top 5 books.id,name,author,description,image,category_name from books join categories on books.category_id=categories.id order by books.created_at desc;", cn);
                 da = new SqlDataAdapter(cmd);
                 ds = new DataSet();
                 StringBuilder bookCard = new StringBuilder();
@@ -57,17 +57,17 @@ namespace LMS_v1.Views
                          <h5 class='card-title'>{name}</h5>
                             <p class='card-text'>{author}</p>
                             <p class='card-text'>{categoryName}</p>
-                            <a href='bookDetial/{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
+                            <a href='book\{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
                          </div>
                         </div>
                         ");
-                        bookdisplay.InnerHtml += bookCard.ToString();
+                        latestBooks.InnerHtml += bookCard.ToString();
                     }
                 }
                 else
                 {
-                    bookdisplay.InnerHtml = "";
-                    bookdisplay.InnerHtml = "<h1>No books available</h1>";
+                    latestBooks.InnerHtml = "";
+                    latestBooks.InnerHtml = "<h1>No books available</h1>";
                 }
             }
             catch (Exception ex)

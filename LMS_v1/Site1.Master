@@ -43,7 +43,6 @@
                         <a class="list-group-item list-group-item-action" href="~/admin/users" runat="server">Members</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/books" runat="server">Books</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/addBook" runat="server">Add Book</a>
-                        <a class="list-group-item list-group-item-action" href="~/" runat="server">Back To HomePage</a>
                         <a class="list-group-item list-group-item-action" href="~/logout" runat="server">Logout</a>
                     </div>
                 </div>

@@ -16,11 +16,12 @@ namespace LMS_v1
             routes.MapPageRoute("Login", "login", "~/Views/Login.aspx");
             routes.MapPageRoute("Register", "register", "~/Views/Register.aspx");
             routes.MapPageRoute("HomeRoute", "", "~/views/Home.aspx");
-            routes.MapPageRoute("books", "books", "~/Views/Home.aspx");
-            routes.MapPageRoute("bookDetail","books/{id}","~/Views/BookDetail.aspx");
+            routes.MapPageRoute("books", "books", "~/Views/Books.aspx");
+            routes.MapPageRoute("bookDetail","book/{id}","~/Views/BookDetail.aspx");
             routes.MapPageRoute("Users", "Users", "~/Customers.aspx");
             routes.MapPageRoute("StaticsPage", "admin/dashboard", "~/Views/Admin/Dashboard.aspx");
             routes.MapPageRoute("Logout", "logout", "~/Views/Logout.aspx");
+            routes.MapPageRoute("Profile", "profile", "~/Views/Profile.aspx");
             routes.MapPageRoute("addBook", "admin/addBook", "~/Views/Admin/AddBook.aspx");
         }
     }

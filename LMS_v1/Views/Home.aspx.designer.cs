@@ -15,12 +15,12 @@ namespace LMS_v1.Views
     {
 
         /// <summary>
-        /// bookdisplay control.
+        /// latestBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookdisplay;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl latestBooks;
     }
 }
