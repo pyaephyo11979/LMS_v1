@@ -38,7 +38,6 @@ namespace LMS_v1.Views
                 ds = new DataSet();
                 StringBuilder bookCard = new StringBuilder();
                 da.Fill(ds);
-
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     DataTable dt = ds.Tables[0];
@@ -51,17 +50,14 @@ namespace LMS_v1.Views
                         string author = row["author"].ToString();
                         string categoryName= row["category_name"].ToString();
                         bookCard.Append($@"
-                         <div class='card col-3 m-2'>
-                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
+                         <div class='card col-2 m-1'>
                          <div class='card-body'>
-                         <h5 class='card-title'>{name}</h5>
-                            <p class='card-text'>{author}</p>
-                            <p class='card-text'>{categoryName}</p>
-                            <a href='book\{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
+                        <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
+                         <p class='card-title text-decoration-bold'>{name}</p>
                          </div>
                         </div>
                         ");
-                        latestBooks.InnerHtml += bookCard.ToString();
+                        latestBooks.InnerHtml = bookCard.ToString();
                     }
                 }
                 else

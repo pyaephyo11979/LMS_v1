@@ -33,6 +33,7 @@ namespace LMS_v1.Views
 
                 SqlCommand cmd= new SqlCommand("select * from categories", conn);
                 SqlDataReader rd = cmd.ExecuteReader();
+                ddlcategory.Items.Add(new ListItem("ChooseCategory", "0"));
                 if (rd != null) {
                     while (rd.Read())
                     {
@@ -54,6 +55,7 @@ namespace LMS_v1.Views
             {
                 SqlCommand cmd = new SqlCommand("select distinct author from books", conn);
                 SqlDataReader rd = cmd.ExecuteReader();
+                ddlauthor.Items.Add(new ListItem("ChooseAuthor", "null"));
                 if (rd != null)
                 {
                     while (rd.Read())
@@ -96,7 +98,7 @@ namespace LMS_v1.Views
                          </div>
                         </div>
                         ");
-                    bookDisplay.InnerHtml += bookCard.ToString();
+                    bookDisplay.InnerHtml = bookCard.ToString();
                 }
                 reader.Close();
             }
@@ -163,12 +165,12 @@ namespace LMS_v1.Views
 
                         bookCard.Append($@"
                          <div class='card col-3 m-2'>
-                         <img src='/uploads/bookCovers/{HttpUtility.HtmlEncode(imageurl)}' class='card-img-top' alt='{HttpUtility.HtmlEncode(name)}' />
+                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top' alt='{name}' />
                          <div class='card-body'>
-                         <h5 class='card-title'>{HttpUtility.HtmlEncode(name)}</h5>
-                            <p class='card-text'>{HttpUtility.HtmlEncode(author)}</p>
-                            <p class='card-text'>{HttpUtility.HtmlEncode(categoryName)}</p>
-                            <a href='book/{HttpUtility.HtmlEncode(id)}' class='d-inline text-decoration-none text-secondary'>See More..</a>
+                         <h5 class='card-title'>{name}</h5>
+                            <p class='card-text'>{author}</p>
+                            <p class='card-text'>{categoryName}</p>
+                            <a href='book/{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
                          </div>
                         </div>
                         ");
@@ -179,6 +181,8 @@ namespace LMS_v1.Views
                 {
                     bookDisplay.InnerHtml = "<h4>No Matched Books </h4>";
                 }
+                ddlcategory.SelectedIndex = 0;
+                ddlauthor.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -232,6 +236,7 @@ namespace LMS_v1.Views
             }
             finally
             {
+
                 conn.Close();
             }
         }

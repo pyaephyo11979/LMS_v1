@@ -12,11 +12,9 @@
         <div class="row mb-3">
             <div class="col-md-9 d-flex align-items-end">
                 <div class="me-2">
-                    <label for="ddlcategory" class="form-label">Category</label>
                     <asp:DropDownList ID="ddlcategory" CssClass="form-control" runat="server"></asp:DropDownList>
                 </div>
                 <div class="me-2">
-                    <label for="ddlauthor" class="form-label">Author</label>
                     <asp:DropDownList ID="ddlauthor" CssClass="form-control" runat="server"></asp:DropDownList>
                 </div>
                 <div class="me-2">
@@ -25,7 +23,7 @@
             </div>
             <div class="col-md-3">
                 <div class="input-group">
-                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search books..."></asp:TextBox>
+                    <asp:TextBox ID="txtSearch"  runat="server" CssClass="form-control" placeholder="Search books..."></asp:TextBox>
                     <asp:Button ID="btnSearch" OnClick="search" runat="server" CssClass="btn btn-info" Text="Search" />
                 </div>
             </div>
