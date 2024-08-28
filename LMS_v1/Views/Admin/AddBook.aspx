@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <h4>Enter Book's Description</h4>
-                    <asp:TextBox ID="txtBookDescription" ToolTip="Enter Book Description" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtBookDescription" TextMode="MultiLine" Rows="5" ToolTip="Enter Book Description" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div>
                     <h4>Enter Author Name</h4>

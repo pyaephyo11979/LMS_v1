@@ -14,7 +14,7 @@
         <asp:ContentPlaceHolder runat="server" ID="header" ></asp:ContentPlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css" integrity="sha512-8BU3emz11z9iF75b10oPjjpamM4Mz23yQFQymbtwyPN3mNWHxpgeqyrYnkIUP6A8KyAj5k2p3MiYLtYqew7gIw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <form runat="server">
@@ -51,7 +51,7 @@
                         <% if (Session["user"] == null)
                             {  %>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" >User</a>
+                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" >User <i calss="fas fa-user"></i></a>
                             <div class=" dropdown-menu dropdown-menu-end dropdown">
                                 <a class="dropdown-item" runat="server" href="~/login">Login</a>
                                 <a class="dropdown-item" runat="server" href="~/register">SignUp</a>
@@ -68,6 +68,7 @@
                              <% if (user.role == "2"){  %>
                                 <a class="dropdown-item" runat="server" href="~/admin/dashboard">Admin Panel</a>
                                 <% } %>
+                                <a classs="dorpdowm-item" runat="server" href="~/bookshelf/<%= user.uid %>">Bookshelf <i class="fas fa-books"></i></a>
                                 <a class="dropdown-item" runat="server" href="~/logout">Logout</a>
                             </div>
                         </li>

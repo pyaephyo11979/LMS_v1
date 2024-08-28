@@ -154,6 +154,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\HomeScipt.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
@@ -184,6 +185,9 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Admin\Dashboard.aspx" />
     <Content Include="Views\Admin\AddBook.aspx" />
+    <Content Include="Views\Admin\DeleteBook.aspx" />
+    <Content Include="Views\Admin\EditBook.aspx" />
+    <Content Include="Views\Admin\ManageBooks.aspx" />
     <Content Include="Views\BookDetail.aspx" />
     <Content Include="Views\Books.aspx" />
     <Content Include="Views\Home.aspx" />
@@ -260,6 +264,27 @@
     </Compile>
     <Compile Include="Views\Admin\AddBook.aspx.designer.cs">
       <DependentUpon>AddBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\DeleteBook.aspx.cs">
+      <DependentUpon>DeleteBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\DeleteBook.aspx.designer.cs">
+      <DependentUpon>DeleteBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\EditBook.aspx.cs">
+      <DependentUpon>EditBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\EditBook.aspx.designer.cs">
+      <DependentUpon>EditBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ManageBooks.aspx.cs">
+      <DependentUpon>ManageBooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ManageBooks.aspx.designer.cs">
+      <DependentUpon>ManageBooks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\BookDetail.aspx.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>

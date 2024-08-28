@@ -14,6 +14,7 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css" integrity="sha512-8BU3emz11z9iF75b10oPjjpamM4Mz23yQFQymbtwyPN3mNWHxpgeqyrYnkIUP6A8KyAj5k2p3MiYLtYqew7gIw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -41,8 +42,7 @@
                         <a class="list-group-item disabled"> <p class="display-6">AdminPanel</p> </a>
                         <a class="list-group-item list-group-item-action" href="~/admin/dashboard" runat="server">Dashboard</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/users" runat="server">Members</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/books" runat="server">Books</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/addBook" runat="server">Add Book</a>
+                        <a class="list-group-item list-group-item-action" href="~/admin/manageBooks" runat="server">Books </a>
                         <a class="list-group-item list-group-item-action" href="~/logout" runat="server">Logout</a>
                     </div>
                 </div>
