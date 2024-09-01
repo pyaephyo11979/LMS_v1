@@ -60,6 +60,15 @@ namespace LMS_v1.Views.Admin
         protected global::System.Web.UI.WebControls.FileUpload fuBookCover;
 
         /// <summary>
+        /// fuBookFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuBookFile;
+
+        /// <summary>
         /// btnAddBook control.
         /// </summary>
         /// <remarks>

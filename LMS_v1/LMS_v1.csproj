@@ -197,6 +197,7 @@
     <Content Include="Views\Logout.aspx" />
     <Content Include="Views\Profile.aspx" />
     <Content Include="Views\Register.aspx" />
+    <Content Include="Views\UpgradeUser.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -350,6 +351,13 @@
     </Compile>
     <Compile Include="Views\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpgradeUser.aspx.cs">
+      <DependentUpon>UpgradeUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UpgradeUser.aspx.designer.cs">
+      <DependentUpon>UpgradeUser.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

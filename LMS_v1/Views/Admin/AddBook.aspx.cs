@@ -56,13 +56,18 @@ namespace LMS_v1.Views.Admin
                 string image = fuBookCover.FileName;
                 string path = Server.MapPath("~/uploads/bookCovers/") + image;
                 fuBookCover.PostedFile.SaveAs(path);
-                SqlCommand cmd = new SqlCommand("insert into books(name,author,description,category_id,image) values(@name,@author,@description,@category_id,@image)", conn);
+                string path2 = Server.MapPath("~/uploads/booksFiles/") + fuBookFile.FileName;
+                fuBookFile.PostedFile.SaveAs(path2);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("insert into books(name,author,description,category_id,image,[file]) values(@name,@author,@description,@category_id,@image,@file)", conn);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@author", author);
                 cmd.Parameters.AddWithValue("@description", description);
                 cmd.Parameters.AddWithValue("@category_id", category_id);
                 cmd.Parameters.AddWithValue("@image", image);
+                cmd.Parameters.AddWithValue("@file", fuBookFile.FileName);
                 cmd.ExecuteNonQuery();
+                Response.Redirect("~/admin/manageBooks");
             }
             catch (Exception ex)
             {

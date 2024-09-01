@@ -60,21 +60,12 @@ namespace LMS_v1.Views
         protected global::System.Web.UI.WebControls.Label lblDescription;
 
         /// <summary>
-        /// btnGetBook control.
+        /// btnDownloadBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnGetBook;
-
-        /// <summary>
-        /// bookDP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe bookDP;
+        protected global::System.Web.UI.WebControls.LinkButton btnDownloadBook;
     }
 }

@@ -66,7 +66,7 @@ namespace LMS_v1.Views
             try
             {
                 connect();
-                SqlCommand cmd = new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users,subscriptions WHERE email=@Email or username=@Email and users.id=subscriptions.user_id", cn);
+                SqlCommand cmd = new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users join subscriptions on users.id=subscriptions.user_id where (users.email=@Email or users.username=@Email)", cn);
                 cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader rd = cmd.ExecuteReader();
 

@@ -40,15 +40,13 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <% var user = (LMS_v1.Models.User)Session["user"]; if (user !=null && ((user.bookLimit >0 && user.expdate > DateTime.Now) || (user.isUnlimited == 1 && user.expdate > DateTime.Now)) ) {  %>
-                                <button class="btn btn-info" runat="server" id="btnGetBook">Read</button>
+                                <asp:LinkButton runat="server" ID="btnDownloadBook" OnClick="DownloadFile" CssClass="btn btn-primary mt-1" > Download <i class="fas fa-download"></i></asp:LinkButton>
                                 <%} %>
                             </div>
                         </div>
                     </div>
-                    <div class="bookDisplay">
-                        <iframe runat="server" id="bookDP" src="<%= BookFile %>"></iframe>
-                    </div>
                 </div>
         </div>
     </div>
+        </div>
 </asp:Content>
