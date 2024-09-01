@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LMS_v1.Views.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
-        <p class="display-1">Welcome From  Online Library</p>
+        <p class="display-1">Welcome From  Konoha Digital Library</p>
     </div>
     <a href="~/books" class="text-decoration-none text-dark" style="width:200px;" runat="server">
     <div class="card ">

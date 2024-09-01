@@ -91,9 +91,22 @@ namespace LMS_v1.Views
                     var user = (LMS_v1.Models.User)Session["user"];
                    int  bookLimit = user.bookLimit;
                     int limit = bookLimit - 1;
+                    int downloads = 0;
+                    SqlCommand cmd2 = new SqlCommand("select downloads from books where id=@id", conn);
+                    cmd2.Parameters.AddWithValue("@id", bookID);
+                    SqlDataReader rd2 = cmd2.ExecuteReader();
+                    while (rd2.Read())
+                    {
+                        downloads = Convert.ToInt32(rd2["downloads"]);
+                    }
+                    rd2.Close();
+                    downloads = downloads + 1;
+                    SqlCommand cmd3 = new SqlCommand("update books set downloads=@downloads where id=@id", conn);
+                    cmd3.Parameters.AddWithValue("@downloads", downloads.ToString());
                     SqlCommand cmd = new SqlCommand("update subscriptions set bookLimit=@limit where user_id=@uid", conn);
                     cmd.Parameters.AddWithValue("@uid", user.uid);
                     cmd.Parameters.AddWithValue ("@limit", limit);
+                    cmd3.ExecuteNonQuery();
                     cmd.ExecuteNonQuery();
                     user.bookLimit = limit;
                 }

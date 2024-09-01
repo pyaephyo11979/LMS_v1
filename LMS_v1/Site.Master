@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Library</title>
+    <title><%: Page.Title %> - KonoahLibrary</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -106,7 +106,9 @@
         </asp:ScriptManager>
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-                <a class="navbar-brand display-4 ms-3" runat="server" href="~/">Library</a>
+                <a class="navbar-brand display-4 ms-3" runat="server" href="~/">
+                    <embed type="image/svg+xml" src="/Book.svg" alt="Description of the image" />
+                </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -145,7 +147,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Library</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Konoah Library</p>
             </footer>
         </div>
     </form>

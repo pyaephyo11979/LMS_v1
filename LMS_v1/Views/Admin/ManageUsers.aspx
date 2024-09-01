@@ -24,7 +24,9 @@
                                 <asp:TableHeaderCell>Phone</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Subscription Level</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Stauts</asp:TableHeaderCell>
-                                <asp:TableHeaderCell></asp:TableHeaderCell>
+                                <asp:TableHeaderCell>PlanID</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>SubscriptionEndDate</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                         </asp:Table>
                     </div>
