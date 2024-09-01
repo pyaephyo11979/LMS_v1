@@ -33,6 +33,17 @@ namespace LMS_v1.Views
                 cmd.Parameters.AddWithValue("fullname", txtName.Text);
                 cmd.Parameters.AddWithValue("password", psw);
                 cmd.ExecuteNonQuery();
+                SqlCommand cmd1= new SqlCommand("select id from users where email=@email", cn);
+                cmd1.Parameters.AddWithValue("email", txtEmail.Text);
+                SqlDataReader rd = cmd1.ExecuteReader();
+                while (rd.Read())
+                {
+                    string uid= rd["id"].ToString();
+                    SqlCommand cmd2 = new SqlCommand("insert into subscriptions (user_id,plan_id,bookLimit,status) values (@uid,1,3,1)", cn);
+                    cmd2.Parameters.AddWithValue("uid", uid);
+                    cmd2.ExecuteNonQuery();
+                }
+                rd.Close();
                 cn.Close();
                 Response.Redirect("~/login");
             }

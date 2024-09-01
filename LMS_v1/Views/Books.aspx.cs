@@ -15,6 +15,7 @@ namespace LMS_v1.Views
 {
     public partial class Books : System.Web.UI.Page
     {
+        private int bookLimit;
         private SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
         protected void connect()
         {

@@ -26,6 +26,8 @@ namespace LMS_v1
             routes.MapPageRoute("manageBooks", "admin/manageBooks", "~/Views/Admin/ManageBooks.aspx");
             routes.MapPageRoute("editBook","admin/editbook/{id}", "~/Views/Admin/EditBook.aspx");
             routes.MapPageRoute("deleteBook", "admin/deletebook/{id}", "~/Views/Admin/DeleteBook.aspx");
+            routes.MapPageRoute("UpgradeUser", "upgrade/{pid}", "~/Views/UpgradeUser.aspx");
+            routes.MapPageRoute("bookMarks", "bookmarks", "~/Views/BookMarks.aspx");
         }
     }
 }

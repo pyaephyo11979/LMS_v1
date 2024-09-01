@@ -16,7 +16,7 @@ namespace LMS_v1.Views
         private string author;
         private string category;
         private string image;
-        private string file;
+        private string BookFile;
         private string bookID;
         private void SearchBook(string bID)
         {
@@ -37,6 +37,7 @@ namespace LMS_v1.Views
                     lblDescription.Text = description;
                     lblAuthor.Text = author;
                     lblCategory.Text = category;
+                    BookFile = "/uploads/bookFiles/" + rd["file"].ToString();
                     imgBookCover.ImageUrl = "/uploads/bookCovers/" + image;
 
                 }

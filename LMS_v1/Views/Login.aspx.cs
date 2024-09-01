@@ -11,7 +11,7 @@ namespace LMS_v1.Views
     public partial class Login : System.Web.UI.Page
     {
         protected SqlConnection cn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
-
+        protected string errmsg = null;
         protected void connect()
         {
             try
@@ -56,7 +56,7 @@ namespace LMS_v1.Views
             }
             else
             {
-                ShowAlert("Invalid Email or Password");
+                errmsg="Invild Email or Password";
             }
         }
 
@@ -66,7 +66,7 @@ namespace LMS_v1.Views
             try
             {
                 connect();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE email=@Email", cn);
+                SqlCommand cmd = new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users,subscriptions WHERE email=@Email or username=@Email and users.id=subscriptions.user_id", cn);
                 cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -83,6 +83,10 @@ namespace LMS_v1.Views
                         planID = rd["plan_id"].ToString(),
                         profileUrl = rd["image"].ToString(),
                         status = rd["status"].ToString(),
+                        expdate = Convert.ToDateTime(rd["expires_at"]),
+                        bookLimit = Convert.ToInt32(rd["booklimit"]),
+                        isUnlimited = Convert.ToInt32(rd["isUnlimited"]),
+                        subscriptionID = Convert.ToInt32(rd["subscriptionID"])
                     };
                 }
                 rd.Close();
@@ -106,7 +110,7 @@ namespace LMS_v1.Views
             try
             {
                 connect();
-                SqlCommand cmd = new SqlCommand("SELECT password FROM users WHERE email=@Email", cn);
+                SqlCommand cmd = new SqlCommand("SELECT password FROM users WHERE email=@Email or username=@Email", cn);
                 cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader reader = cmd.ExecuteReader();
 

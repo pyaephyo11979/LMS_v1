@@ -188,7 +188,9 @@
     <Content Include="Views\Admin\DeleteBook.aspx" />
     <Content Include="Views\Admin\EditBook.aspx" />
     <Content Include="Views\Admin\ManageBooks.aspx" />
+    <Content Include="Views\Admin\ManageUsers.aspx" />
     <Content Include="Views\BookDetail.aspx" />
+    <Content Include="Views\BookMarks.aspx" />
     <Content Include="Views\Books.aspx" />
     <Content Include="Views\Home.aspx" />
     <Content Include="Views\Login.aspx" />
@@ -286,12 +288,26 @@
     <Compile Include="Views\Admin\ManageBooks.aspx.designer.cs">
       <DependentUpon>ManageBooks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\BookDetail.aspx.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookMarks.aspx.cs">
+      <DependentUpon>BookMarks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\BookMarks.aspx.designer.cs">
+      <DependentUpon>BookMarks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Books.aspx.cs">
       <DependentUpon>Books.aspx</DependentUpon>

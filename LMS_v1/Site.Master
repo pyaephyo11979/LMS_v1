@@ -18,6 +18,74 @@
 </head>
 <body>
     <form runat="server">
+        <% var user = (LMS_v1.Models.User)Session["user"]; %>
+                <div runat="server" class="modal modal-lg" id="upgradeModel">
+        <div class=" modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="">Upgrade for More Features</h4>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Basic</h5>
+                                    <ul style="list-style:disc;">
+                                        <li>Download Books Up to 10 books per month</li>
+                                        <li>Bookmark Books</li>
+                                    </ul>
+                                    <p>Price: $ 5.99</p>
+                                    <a class="btn btn-success" runat="server" href="~/upgrade/2">Upgrade</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Standard</h5>
+                                    <ul style="list-style:disc;">
+                                        <li>Download Books Up to 20 books per month</li>
+                                        <li>Bookmark Books</li>
+                                    </ul>
+                                    <p>Price: $ 9.99</p>
+                                    <a class="btn btn-success" runat="server" href="~/upgrade/3">Upgrade</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Premium</h5>
+                                    <ul style="list-style:disc;">
+                                        <li>Download Books Up to 30 books per month</li>
+                                        <li>Bookmark Books</li>
+                                    </ul>
+                                    <p>Price: $ 14.99</p>
+                                    <a class="btn btn-success" runat="server" href="~/upgrade/4">Upgrade</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Unlimited</h5>
+                                    <ul style="list-style:disc;">
+                                        <li>Download Unlimited Books!</li>
+                                        <li>Bookmark Books</li>
+                                    </ul>
+                                    <p>Price: $ 29.99</p>
+                                    <a class="btn btn-success" runat="server" href="~/upgrade/5">Upgrade</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -60,15 +128,12 @@
                         <% }
                             else
                             {
-                                var user = (LMS_v1.Models.User)Session["user"]; %>
+                                 %>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" ><%= user.username %></a>
                             <div class=" dropdown-menu dropdown-menu-end dropdown">
                                 <a class="dropdown-item" runat="server" href="~/profile">Profile</a>
-                             <% if (user.role == "2"){  %>
-                                <a class="dropdown-item" runat="server" href="~/admin/dashboard">Admin Panel</a>
-                                <% } %>
-                                <a classs="dorpdowm-item" runat="server" href="~/bookshelf/<%= user.uid %>">Bookshelf <i class="fas fa-books"></i></a>
+                                <a class="dropdown-item" runat="server" href="~/BookShelf/<%=user.uid %>">BookShelf</a>
                                 <a class="dropdown-item" runat="server" href="~/logout">Logout</a>
                             </div>
                         </li>

@@ -51,21 +51,26 @@
                                 <% int level = Convert.ToInt32(user.planID); switch(level) {  %>
                                 <% case 1: %>
                                 <p>Plan: <span class="text-secondary">Free</span></p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#upgradeModel">Upgrade</button>
                                 <% break; %>
                                 <% case 2: %>
                                 <p>Plan: <span style="color:lightblue">Basic</span></p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#upgradeModel">Upgrade</button>
                                 <% break; %>
                                 <% case 3: %>
                                 <p>Plan: <span style="color:silver">Standard</span></p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#upgradeModel">Upgrade</button>
                                 <% break; %>
                                 <% case 4: %>
                                 <p>Plan: <span style="color:goldenrod">Premium</span></p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#upgradeModel">Upgrade</button>
                                 <% break; %>
                                 <% case 5: %>
                                 <p>Plan: <span style="color:gold">Unlimited</span></p>
                                 <% break; %>
                                 <% default: %>
                                 <p>Plan: <span class="text-secondary">Free</span></p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#upgradeModel">Upgrade</button>
                                 <% break; %>
                                 <% } %>
                             </div>

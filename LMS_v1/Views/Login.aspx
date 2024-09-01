@@ -12,9 +12,17 @@
             <div class="card m-auto" aria-flowto="center" style="width:350px; height:330px;">
                 <div class="card-body p-auto">
                     <div class="container-fluid">
+                        <div class="mt-2">
+                                <% if(errmsg != null) {  %>
+                                <div class="alert alert-danger" role="alert">
+                                        <%= errmsg %>
+                                    <button class="btn btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                <% } %>
+                        </div>
                     <div class="mt-2">
                         <label class="form-label">Enter Your Email</label>
-                        <asp:TextBox ID="txtEmail"  runat="server" TextMode="Email" CssClass="form-control" ToolTip="Enter yor email address" ></asp:TextBox>
+                        <asp:TextBox ID="txtEmail"  runat="server" TextMode="Email" CssClass="form-control" ToolTip="Enter your username or email address" ></asp:TextBox>
                         <asp:RegularExpressionValidator ControlToValidate="txtEmail" ID="regValidatorEmailLogin" ErrorMessage="Please Enter valid Email" ForeColor="Red" runat="server" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                     </div>
                     <div class="mt-2">
