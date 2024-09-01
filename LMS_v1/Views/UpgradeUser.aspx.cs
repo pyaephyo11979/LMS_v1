@@ -41,11 +41,15 @@ namespace LMS_v1.Views
                 }
                 rd.Close();
                 SqlCommand cmd = new SqlCommand("update subscriptions set plan_id=@pid , bookLimit=@bLimit , isUnlimited=@isUnlimited , expires_at= dateadd(month,1,getdate()) , updated_at=getdate() where user_id=@uid", con);
+                SqlCommand cmd2 = new SqlCommand("update users set plan_id=@pid whre id=@id");
                 cmd.Parameters.AddWithValue("@pid", pid);
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.Parameters.AddWithValue("@bLimit", bookLimit);
                 cmd.Parameters.AddWithValue("@isUnlimited", isUnlimited);
+                cmd2.Parameters.AddWithValue("@pid", pid);
+                cmd2.Parameters.AddWithValue("@id", uid);
                 cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
                 var user= (LMS_v1.Models.User)Session["user"];
                 user.planID = pid;
                 user.bookLimit= Convert.ToInt32(bookLimit);

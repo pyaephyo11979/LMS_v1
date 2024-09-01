@@ -89,10 +89,13 @@ namespace LMS_v1.Views
                     Response.TransmitFile(fl.FullName);
                     Response.End();
                     var user = (LMS_v1.Models.User)Session["user"];
-                    SqlCommand cmd = new SqlCommand("update subscriptions set bookLimit=bookLimit-1 where user_id=@uid", conn);
+                   int  bookLimit = user.bookLimit;
+                    int limit = bookLimit - 1;
+                    SqlCommand cmd = new SqlCommand("update subscriptions set bookLimit=@limit where user_id=@uid", conn);
                     cmd.Parameters.AddWithValue("@uid", user.uid);
+                    cmd.Parameters.AddWithValue ("@limit", limit);
                     cmd.ExecuteNonQuery();
-                    user.bookLimit -= 1;
+                    user.bookLimit = limit;
                 }
                 else
                 {

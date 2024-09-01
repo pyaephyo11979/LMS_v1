@@ -22,11 +22,11 @@
                 </div>
                 <div>
                     <h4>Choose Book Cover</h4>
-                    <asp:FileUpload ID="fuBookCover"  runat="server" CssClass="form-control" />
+                    <asp:FileUpload ID="fuBookCover" accept=".jpg,.jepg,.png"  runat="server" CssClass="form-control" />
                 </div>
                 <div>
                     <h4>Choose Book File</h4>
-                    <asp:FileUpload ID="fuBookFile" runat="server" CssClass="form-control" />
+                    <asp:FileUpload ID="fuBookFile" runat="server" accept=".pdf,.epub" CssClass="form-control" />
                 </div>
                 <div class="mt-2">
                     <asp:Button ID="btnAddBook" runat="server" Text="Add Book" CssClass="btn btn-primary" OnClick="Add" />

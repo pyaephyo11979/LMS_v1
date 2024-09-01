@@ -35,6 +35,10 @@ namespace LMS_v1.Views.Admin
             {
                 Response.Write(ex.Message);
             }
+            finally
+            {
+                conn.Close();
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,8 +59,8 @@ namespace LMS_v1.Views.Admin
                 string category_id = ddlCategory.SelectedValue;
                 string image = fuBookCover.FileName;
                 string path = Server.MapPath("~/uploads/bookCovers/") + image;
+                string path2 = Server.MapPath("~/uploads/bookFiles/") + fuBookFile.FileName;
                 fuBookCover.PostedFile.SaveAs(path);
-                string path2 = Server.MapPath("~/uploads/booksFiles/") + fuBookFile.FileName;
                 fuBookFile.PostedFile.SaveAs(path2);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("insert into books(name,author,description,category_id,image,[file]) values(@name,@author,@description,@category_id,@image,@file)", conn);
