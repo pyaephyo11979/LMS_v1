@@ -45,9 +45,14 @@ namespace LMS_v1.Views
                 User user = getUserDetail(email);
                 Session["user"] = user;
 
-                if (user != null && user.role == "2") 
+                if (user != null && user.role == "2" && user.status == "1") 
                 {
                     Response.Redirect("~/admin/dashboard");
+                }
+                else if(user.status == "0")
+                {
+                    Session.Abandon();
+                    errmsg = "Your account is disabled. Please contact the administrator.";
                 }
                 else
                 {

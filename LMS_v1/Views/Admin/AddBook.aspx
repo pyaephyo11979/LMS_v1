@@ -4,28 +4,28 @@
             <h2>Add Book</h2>
             <div class="container">
                 <div>
-                    <h4>Enter Book Name</h4>
+                    <h5>Enter Book Name</h5>
                     <asp:TextBox ID="txtBookName" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div>
-                    <h4>Enter Book's Description</h4>
+                    <h5>Enter Book's Description</h5>
                     <asp:TextBox ID="txtBookDescription" TextMode="MultiLine" Rows="5" ToolTip="Enter Book Description" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div>
-                    <h4>Enter Author Name</h4>
+                    <h5>Enter Author Name</h5>
                     <asp:TextBox ID="txtAuthorName" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div>
-                    <h4>Choose Cateogry</h4>
+                    <h5>Choose Cateogry</h5>
                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control">
                     </asp:DropDownList>
                 </div>
                 <div>
-                    <h4>Choose Book Cover</h4>
+                    <h5>Choose Book Cover</h5>
                     <asp:FileUpload ID="fuBookCover" accept=".jpg,.jepg,.png"  runat="server" CssClass="form-control" />
                 </div>
                 <div>
-                    <h4>Choose Book File</h4>
+                    <h5>Choose Book File</h5>
                     <asp:FileUpload ID="fuBookFile" runat="server" accept=".pdf,.epub" CssClass="form-control" />
                 </div>
                 <div class="mt-2">

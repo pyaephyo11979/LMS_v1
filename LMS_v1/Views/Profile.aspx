@@ -14,13 +14,13 @@
                         <% if(user.profileUrl != "") {  %>
                         <img src="/uploads/profiles/<%= user.profileUrl %>" class="card-img" alt="Profile Picture" />
                         <div class="input-group mt-1">
-                            <asp:FileUpload ID="filePP" runat="server" CssClass="form-control" />
+                            <asp:FileUpload ID="filePP" accept=".jpg,.jepg,.png" runat="server" CssClass="form-control" />
                             <asp:Button ID="btnChangePP" runat="server" Text="ChangeProfile" OnClick="ChangeProfile" CssClass="btn btn-primary input-group-text" />
                         </div>
                         <% } else { %>
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Profile Picture" />
                         <div class="input-group mt-1">
-                            <asp:FileUpload ID="fileProfile" runat="server" CssClass="form-control" />
+                            <asp:FileUpload ID="fileProfile" accept=".jpg,.jepg,.png" runat="server" CssClass="form-control" />
                             <asp:Button ID="btnUploadProfile" runat="server" Text="Upload" OnClick="UpdateProfile" CssClass="btn btn-primary input-group-text" />
                         </div>
                         <% } %>
