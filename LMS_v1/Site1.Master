@@ -41,7 +41,7 @@
                     <div class="list-group">
                         <a class="list-group-item disabled"> <p class="display-6">AdminPanel</p> </a>
                         <a class="list-group-item list-group-item-action" href="~/admin/dashboard" runat="server">Dashboard</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/users" runat="server">Members</a>
+                        <a class="list-group-item list-group-item-action" href="~/admin/manageUsers" runat="server">Members</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/manageBooks" runat="server">Books </a>
                         <a class="list-group-item list-group-item-action" href="~/logout" runat="server">Logout</a>
                     </div>

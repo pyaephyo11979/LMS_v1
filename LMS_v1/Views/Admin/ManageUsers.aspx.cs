@@ -26,7 +26,7 @@ namespace LMS_v1.Views.Admin
             try
             {
                 con.Open();
-                SqlCommand cmd= new SqlCommand("select * from users", con);
+                SqlCommand cmd= new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.last_active,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users join subscriptions on users.id=subscriptions.user_id ", con);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
@@ -49,17 +49,25 @@ namespace LMS_v1.Views.Admin
                         cell5.Text = dr["phone"].ToString();
                         row.Cells.Add(cell5);
                         TableCell cell6 = new TableCell();
-                        cell6.Text = dr["plan_id"].ToString();
+                        cell6.Text = dr["status"].ToString();
                         row.Cells.Add(cell6);
                         TableCell cell7 = new TableCell();
-                        cell7.Text = dr["updated_at"].ToString();
+                        cell7.Text = dr["plan_id"].ToString();
                         row.Cells.Add(cell7);
+                        DateTime expdate = Convert.ToDateTime(dr["expires_at"]);
                         TableCell cell8 = new TableCell();
-                        cell8.Text = "<a href='edituser.aspx?id=" + dr["id"].ToString() + "'>Edit</a>";
+                        cell8.Text = expdate.Day + "/"+ expdate.Month + "/" +expdate.Year;
                         row.Cells.Add(cell8);
+                        DateTime lastUpdate = Convert.ToDateTime(dr["last_active"]);
                         TableCell cell9 = new TableCell();
-                        cell9.Text = "<a href='deleteuser.aspx?id=" + dr["id"].ToString() + "'>Delete</a>";
+                        cell9.Text = lastUpdate.Day + "/" + lastUpdate.Month + "/" + lastUpdate.Year;
                         row.Cells.Add(cell9);
+                        TableCell cell10 = new TableCell();
+                        cell10.Text = $"<a href='~/admin/suspendUser/{dr["id"]}' class='btn btn-primary'>Upgrade</a>";
+                        row.Cells.Add(cell10);
+                        TableCell cell11 = new TableCell();
+                        cell11.Text= "<a href='~/admin/deleteUser/" + dr["id"] + "' class='btn btn-danger'>Delete</a>";
+                        row.Cells.Add(cell11);
                         userTable.Rows.Add(row);
                     }
                 }

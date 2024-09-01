@@ -42,6 +42,7 @@ namespace LMS_v1.Views
 
             if (ValidateUser(email, password))
             {
+
                 User user = getUserDetail(email);
                 Session["user"] = user;
 
@@ -118,7 +119,7 @@ namespace LMS_v1.Views
                 SqlCommand cmd = new SqlCommand("SELECT password FROM users WHERE email=@Email or username=@Email", cn);
                 cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader reader = cmd.ExecuteReader();
-
+                
                 if (reader.Read())
                 {
                     string storedHashedPassword = reader["password"].ToString();
@@ -126,6 +127,9 @@ namespace LMS_v1.Views
 
                     if (storedHashedPassword == enteredHashedPassword)
                     {
+                        SqlCommand cmd1 = new SqlCommand("update users set last_login=getdate() where email=@Email", cn);
+                        cmd1.Parameters.AddWithValue("@Email", email);
+                        cmd1.ExecuteNonQuery();
                         isValid = true;
                     }
                 }

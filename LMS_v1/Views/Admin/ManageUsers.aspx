@@ -26,7 +26,8 @@
                                 <asp:TableHeaderCell>Stauts</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>PlanID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>SubscriptionEndDate</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>LastActive</asp:TableHeaderCell>
+                                <asp:TableHeaderCell ColumnSpan="2">Actions</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                         </asp:Table>
                     </div>

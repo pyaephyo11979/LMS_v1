@@ -134,7 +134,7 @@
                             <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" ><%= user.username %></a>
                             <div class=" dropdown-menu dropdown-menu-end dropdown">
                                 <a class="dropdown-item" runat="server" href="~/profile">Profile</a>
-                                <a class="dropdown-item" runat="server" href="~/BookShelf/<%=user.uid %>">BookShelf</a>
+                                <a class="dropdown-item" runat="server" href="~/bookmarks">Bookmarks</a>
                                 <a class="dropdown-item" runat="server" href="~/logout">Logout</a>
                             </div>
                         </li>

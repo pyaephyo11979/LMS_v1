@@ -126,6 +126,26 @@ namespace LMS_v1.Views
             }
 
         }
+        protected void BookMark(object sender,EventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                var user = (LMS_v1.Models.User)Session["user"];
+                SqlCommand cmd = new SqlCommand("insert into bookmarks(user_id,book_id) values(@uid,@bid)", conn);
+                cmd.Parameters.AddWithValue("@uid", user.uid);
+                cmd.Parameters.AddWithValue("@bid", bookID);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         private void ShowAlert(string message)
         {
             StringBuilder alertScript = new StringBuilder();

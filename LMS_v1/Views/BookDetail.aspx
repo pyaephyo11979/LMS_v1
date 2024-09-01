@@ -42,6 +42,9 @@
                                 <% var user = (LMS_v1.Models.User)Session["user"]; if (user !=null && ((user.bookLimit >0 && user.expdate > DateTime.Now) || (user.isUnlimited == 1 && user.expdate > DateTime.Now)) ) {  %>
                                 <asp:LinkButton runat="server" ID="btnDownloadBook" OnClick="DownloadFile" CssClass="btn btn-primary mt-1" > Download <i class="fas fa-download"></i></asp:LinkButton>
                                 <%} %>
+                                <asp:LinkButton runat="server" OnClick="BookMark" CssClass="btn btn-info mt-1" ID="btnToBookmark" >
+                                    <i class="fas fa-bookmark"></i> 
+                                </asp:LinkButton>
                             </div>
                         </div>
                     </div>
