@@ -46,8 +46,8 @@ namespace LMS_v1.Views
                     planPrice = rd["price"].ToString();
                 }
                 rd.Close();
-                SqlCommand cmd = new SqlCommand("update subscriptions set plan_id=@pid , bookLimit=@bLimit , isUnlimited=@isUnlimited , expires_at= dateadd(month,1,getdate()) , updated_at=getdate() where user_id=@uid", con);
-                SqlCommand cmd2 = new SqlCommand("update users set plan_id=@pid whre id=@id");
+                SqlCommand cmd = new SqlCommand("update subscriptions set plan_id=@pid,bookLimit=@bLimit,isUnlimited=@isUnlimited,expires_at=dateadd(month,1,getdate()),updated_at=getdate() where user_id=@uid", con);
+                SqlCommand cmd2 = new SqlCommand("update users set plan_id=@pid where id=@id",con);
                 cmd.Parameters.AddWithValue("@pid", pid);
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.Parameters.AddWithValue("@bLimit", bookLimit);
@@ -61,13 +61,16 @@ namespace LMS_v1.Views
                 user.bookLimit= Convert.ToInt32(bookLimit);
                 user.isUnlimited = Convert.ToInt32(bookLimit);
                 user.expdate = DateTime.Now.AddMonths(1);
-                con.Close();
                 SendEmail();
                 Response.Redirect("~/profile");
             }
             catch (Exception ex)
             {
                 Response.Write(ex.Message);
+            }
+            finally
+            {
+                con.Close();
             }
         }
         protected void SendEmail()
@@ -139,7 +142,7 @@ namespace LMS_v1.Views
                     "</html>");
                 mailService.sendMail(user.email, "Account Upgraded", mailBody.ToString());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

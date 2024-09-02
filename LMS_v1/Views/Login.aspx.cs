@@ -45,19 +45,20 @@ namespace LMS_v1.Views
 
                 User user = getUserDetail(email);
                 Session["user"] = user;
+                
 
-                if (user != null && user.role == "2" && user.status == "1") 
+                if (user != null && (user.role == "2" && user.status == 1)) 
                 {
                     Response.Redirect("~/admin/dashboard");
                 }
-                else if(user.status == "0")
+                else if(user !=null && (user.role== "1" && user.status== 1))
                 {
-                    Session.Abandon();
-                    errmsg = "Your account is disabled. Please contact the administrator.";
+                    Response.Redirect("~/");
                 }
                 else
                 {
-                    Response.Redirect("~/");
+                    Session.Abandon();
+                    errmsg = "Your account is disabled. Please contact the administrator.";
                 }
             }
             else
@@ -72,10 +73,12 @@ namespace LMS_v1.Views
             try
             {
                 connect();
-                SqlCommand cmd = new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users join subscriptions on users.id=subscriptions.user_id where (users.email=@Email or users.username=@Email)", cn);
-                cmd.Parameters.AddWithValue("@Email", email);
-                SqlDataReader rd = cmd.ExecuteReader();
-
+                SqlCommand cmd1 = new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users join subscriptions on users.id=subscriptions.user_id where (users.email=@Email or users.username=@Email)", cn);
+                cmd1.Parameters.AddWithValue("@Email", email);
+                SqlCommand cmd2 = new SqlCommand("update users set last_active=getdate() where email=@Email", cn);
+                cmd2.Parameters.AddWithValue("@Email", email);
+                cmd2.ExecuteNonQuery();
+                SqlDataReader rd = cmd1.ExecuteReader();
                 if (rd.Read())
                 {
                     user = new User
@@ -88,7 +91,7 @@ namespace LMS_v1.Views
                         role = rd["role_id"].ToString(),
                         planID = rd["plan_id"].ToString(),
                         profileUrl = rd["image"].ToString(),
-                        status = rd["status"].ToString(),
+                        status = Convert.ToInt32(rd["status"]),
                         expdate = Convert.ToDateTime(rd["expires_at"]),
                         bookLimit = Convert.ToInt32(rd["booklimit"]),
                         isUnlimited = Convert.ToInt32(rd["isUnlimited"]),
@@ -119,17 +122,12 @@ namespace LMS_v1.Views
                 SqlCommand cmd = new SqlCommand("SELECT password FROM users WHERE email=@Email or username=@Email", cn);
                 cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader reader = cmd.ExecuteReader();
-                
-                if (reader.Read())
+                while (reader.Read())
                 {
                     string storedHashedPassword = reader["password"].ToString();
                     string enteredHashedPassword = HashPassword(password);
-
                     if (storedHashedPassword == enteredHashedPassword)
                     {
-                        SqlCommand cmd1 = new SqlCommand("update users set last_login=getdate() where email=@Email", cn);
-                        cmd1.Parameters.AddWithValue("@Email", email);
-                        cmd1.ExecuteNonQuery();
                         isValid = true;
                     }
                 }

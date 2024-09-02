@@ -27,15 +27,15 @@ namespace LMS_v1.Views
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("select name,description,author,books.[file],image,category_name from books,categories where books.id=@id and books.category_id=categories.id", conn);
                 cmd.Parameters.AddWithValue("@id", bID);
-                SqlDataReader rd= cmd.ExecuteReader();
-                while (rd.Read())
+                SqlDataReader dr= cmd.ExecuteReader();
+                while (dr.Read())
                 {
-                    title = rd["name"].ToString();
-                    description = rd["description"].ToString();
-                    author = rd["author"].ToString();
-                    category = rd["category_name"].ToString();
-                    image = rd["image"].ToString();
-                    BookFile = rd["file"].ToString();
+                    title = dr["name"].ToString();
+                    description = dr["description"].ToString();
+                    author = dr["author"].ToString();
+                    category = dr["category_name"].ToString();
+                    image = dr["image"].ToString();
+                    BookFile = dr["file"].ToString();
                     lblTitle.Text = title;
                     lblDescription.Text = description;
                     lblAuthor.Text = author;
@@ -43,7 +43,7 @@ namespace LMS_v1.Views
                     imgBookCover.ImageUrl = "/uploads/bookCovers/" + image;
 
                 }
-                rd.Close();
+                dr.Close();
             }catch(Exception ex)
             {
                 Response.Write(ex.Message);
@@ -68,53 +68,35 @@ namespace LMS_v1.Views
             try
             {
                 conn.Open();
-                SqlCommand cmd1= new  SqlCommand ("select [file] from books where id=@id", conn);
+                SqlCommand cmd1 = new SqlCommand("SELECT [file], downloads FROM books WHERE id=@id", conn);
                 cmd1.Parameters.AddWithValue("@id", bookID);
                 SqlDataReader rd = cmd1.ExecuteReader();
                 string file = "";
+                int downloads = 0;
                 while (rd.Read())
                 {
                     file = rd["file"].ToString();
+                    downloads = Convert.ToInt32(rd["downloads"]);
                 }
                 rd.Close();
-                string path=(Server.MapPath("~/uploads/bookFiles/") + file);
-                FileInfo fl = new FileInfo(path);
-                if (fl.Exists)
-                {
-                    Response.Clear();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file);
-                    Response.AddHeader("Content-Length", fl.Length.ToString());
-                    Response.ContentType = "application/octet-stream";
-                    Response.Flush();
-                    Response.TransmitFile(fl.FullName);
-                    Response.End();
-                    var user = (LMS_v1.Models.User)Session["user"];
-                   int  bookLimit = user.bookLimit;
-                    int limit = bookLimit - 1;
-                    int downloads = 0;
-                    SqlCommand cmd2 = new SqlCommand("select downloads from books where id=@id", conn);
-                    cmd2.Parameters.AddWithValue("@id", bookID);
-                    SqlDataReader rd2 = cmd2.ExecuteReader();
-                    while (rd2.Read())
-                    {
-                        downloads = Convert.ToInt32(rd2["downloads"]);
-                    }
-                    rd2.Close();
-                    downloads = downloads + 1;
-                    SqlCommand cmd3 = new SqlCommand("update books set downloads=@downloads where id=@id", conn);
-                    cmd3.Parameters.AddWithValue("@downloads", downloads.ToString());
-                    SqlCommand cmd = new SqlCommand("update subscriptions set bookLimit=@limit where user_id=@uid", conn);
-                    cmd.Parameters.AddWithValue("@uid", user.uid);
-                    cmd.Parameters.AddWithValue ("@limit", limit);
-                    cmd3.ExecuteNonQuery();
-                    cmd.ExecuteNonQuery();
-                    user.bookLimit = limit;
-                }
-                else
-                {
-                    ShowAlert("Error 404: File not found!!");
-                }
+                        string path = Server.MapPath("~/uploads/bookFiles/") + file;
+                        FileInfo fl = new FileInfo(path);
 
+                        if (fl.Exists)
+                        {
+                            Response.Clear();
+                            Response.AddHeader("Content-Disposition", "attachment; filename=" + file);
+                            Response.AddHeader("Content-Length", fl.Length.ToString());
+                            Response.ContentType = "application/octet-stream";
+                            Response.TransmitFile(fl.FullName);
+                    Response.Flush();
+
+                    UpdateDownloadAndBookLimit(downloads);
+                        }
+                        else
+                        {
+                            ShowAlert("Error 404: File not found!");
+                        }
             }
             catch(Exception ex)
             {
@@ -145,6 +127,24 @@ namespace LMS_v1.Views
             {
                 conn.Close();
             }
+        }
+        private void UpdateDownloadAndBookLimit(int downloads)
+        {
+            var user = (LMS_v1.Models.User)Session["user"];
+            int bookLimit = user.bookLimit - 1;
+
+            SqlCommand cmdUpdate = new SqlCommand(
+                "UPDATE books SET downloads = @downloads WHERE id = @id;" +
+                "UPDATE subscriptions SET bookLimit = @limit WHERE user_id = @uid;",
+                conn
+            );
+            cmdUpdate.Parameters.AddWithValue("@downloads", downloads + 1);
+            cmdUpdate.Parameters.AddWithValue("@id", bookID);
+            cmdUpdate.Parameters.AddWithValue("@uid", user.uid);
+            cmdUpdate.Parameters.AddWithValue("@limit", bookLimit);
+
+            cmdUpdate.ExecuteNonQuery();
+            user.bookLimit = bookLimit;
         }
         private void ShowAlert(string message)
         {
