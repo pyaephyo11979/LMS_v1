@@ -32,6 +32,7 @@ namespace LMS_v1
             routes.MapPageRoute("SuspendUser", "admin/suspend/{uid}", "~/Views/Admin/SuspendUser.aspx");
             routes.MapPageRoute("DeleteUser", "admin/delete/{uid}", "~/Views/Admin/DeleteUser.aspx");
             routes.MapPageRoute("DeleteBookMark", "removebookmark/{bid}", "~/Views/DeleteBookMark.aspx");
+            routes.MapPageRoute("UnsuspendUser", "admin/unsuspend/{uid}", "~/Views/Admin/UnsuspendUser.aspx");
         }
     }
 }

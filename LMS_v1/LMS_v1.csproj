@@ -185,12 +185,16 @@
     <Content Include="Views\Admin\Dashboard.aspx" />
     <Content Include="Views\Admin\AddBook.aspx" />
     <Content Include="Views\Admin\DeleteBook.aspx" />
+    <Content Include="Views\Admin\DeleteUser.aspx" />
     <Content Include="Views\Admin\EditBook.aspx" />
     <Content Include="Views\Admin\ManageBooks.aspx" />
     <Content Include="Views\Admin\ManageUsers.aspx" />
+    <Content Include="Views\Admin\SuspendUser.aspx" />
+    <Content Include="Views\Admin\UnsuspendUser.aspx" />
     <Content Include="Views\BookDetail.aspx" />
     <Content Include="Views\BookMarks.aspx" />
     <Content Include="Views\Books.aspx" />
+    <Content Include="Views\DeleteBookMark.aspx" />
     <Content Include="Views\Home.aspx" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\Logout.aspx" />
@@ -262,6 +266,13 @@
     <Compile Include="Views\Admin\DeleteBook.aspx.designer.cs">
       <DependentUpon>DeleteBook.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\DeleteUser.aspx.cs">
+      <DependentUpon>DeleteUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\DeleteUser.aspx.designer.cs">
+      <DependentUpon>DeleteUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\EditBook.aspx.cs">
       <DependentUpon>EditBook.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -283,6 +294,20 @@
     <Compile Include="Views\Admin\ManageUsers.aspx.designer.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\SuspendUser.aspx.cs">
+      <DependentUpon>SuspendUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\SuspendUser.aspx.designer.cs">
+      <DependentUpon>SuspendUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\UnsuspendUser.aspx.cs">
+      <DependentUpon>UnsuspendUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\UnsuspendUser.aspx.designer.cs">
+      <DependentUpon>UnsuspendUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\BookDetail.aspx.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -303,6 +328,13 @@
     </Compile>
     <Compile Include="Views\Books.aspx.designer.cs">
       <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteBookMark.aspx.cs">
+      <DependentUpon>DeleteBookMark.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\DeleteBookMark.aspx.designer.cs">
+      <DependentUpon>DeleteBookMark.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

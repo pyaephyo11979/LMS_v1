@@ -37,8 +37,6 @@ namespace LMS_v1.Views.Admin
                     while (dr.Read())
                     {
                     TableRow row = new TableRow();
-
-                    row.Cells.Add(new TableCell { Text = dr["id"].ToString() });
                     row.Cells.Add(new TableCell { Text = dr["username"].ToString() });
                     row.Cells.Add(new TableCell { Text = dr["fullname"].ToString() });
                     row.Cells.Add(new TableCell { Text = dr["email"].ToString() });
@@ -61,10 +59,17 @@ namespace LMS_v1.Views.Admin
                     DateTime lastUpdate = Convert.ToDateTime(dr["last_active"]);
                     row.Cells.Add(new TableCell { Text = TimeHelper.GetTimeAgo(lastUpdate)});
                     TableCell cell10 = new TableCell();
-                    cell10.Controls.Add(new LiteralControl($"<a href='~/admin/suspend/{dr["id"]}' class='btn btn-warning'>Suspend</a>"));
+                    if (dr["status"].ToString() == "True")
+                    {
+                        cell10.Controls.Add(new LiteralControl($"<a href='suspend/{dr["id"]}' runat='server' class='btn btn-warning'>Suspend</a>"));
+                    }
+                    else
+                    {
+                        cell10.Controls.Add(new LiteralControl($"<a href='unsuspend/{dr["id"]}' runat='server' class='btn btn-info'>Unsuspend</a>"));
+                    }
                     row.Cells.Add(cell10);
                     TableCell cell11 = new TableCell();
-                    cell11.Controls.Add(new LiteralControl($"<a href='~/admin/delete/{dr["id"]}' class='btn btn-danger'>Delete</a>"));
+                    cell11.Controls.Add(new LiteralControl($"<a href='delete/{dr["id"]}' runat='server' class='btn btn-danger'>Delete</a>"));
                     row.Cells.Add(cell11);
                     userTable.Rows.Add(row);
                 }
@@ -101,7 +106,6 @@ namespace LMS_v1.Views.Admin
                     while (dr.Read())
                     {
                         TableRow row = new TableRow();
-                        row.Cells.Add(new TableCell { Text = dr["id"].ToString() });
                         row.Cells.Add(new TableCell { Text = dr["username"].ToString() });
                         row.Cells.Add(new TableCell { Text = dr["fullname"].ToString() });
                         row.Cells.Add(new TableCell { Text = dr["email"].ToString() });
@@ -124,10 +128,17 @@ namespace LMS_v1.Views.Admin
                         DateTime lastUpdate = Convert.ToDateTime(dr["last_active"]);
                         row.Cells.Add(new TableCell { Text = TimeHelper.GetTimeAgo(lastUpdate) });
                         TableCell cell10 = new TableCell();
-                        cell10.Controls.Add(new LiteralControl($"<a href='~/admin/suspend/{dr["id"]}' class='btn btn-primary'>Upgrade</a>"));
+                        if (dr["status"].ToString() == "True")
+                        {
+                            cell10.Controls.Add(new LiteralControl($"<a href='suspend/{dr["id"]}' runat='server' class='btn btn-warning'>Suspend</a>"));
+                        }
+                        else
+                        {
+                            cell10.Controls.Add(new LiteralControl($"<a href='unsuspend/{dr["id"]}' runat='server' class='btn btn-info'>Unsuspend</a>"));
+                        }
                         row.Cells.Add(cell10);
                         TableCell cell11 = new TableCell();
-                        cell11.Controls.Add(new LiteralControl($"<a href='~/admin/delete/{dr["id"]}' class='btn btn-danger'>Delete</a>"));
+                        cell11.Controls.Add(new LiteralControl($"<a href='delete/{dr["id"]}' runat='server' class='btn btn-danger'>Delete</a>"));
                         row.Cells.Add(cell11);
                         userTable.Rows.Add(row);
                     }

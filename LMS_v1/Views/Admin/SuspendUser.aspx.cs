@@ -19,15 +19,15 @@ namespace LMS_v1.Views.Admin
                 CheckAuth ca = new CheckAuth();
                 ca.AuthicatorAdmin();
             }
-            string uid = Page.RouteData.Values["uid"] as string;
-            Suspend(uid);
+            string id = Page.RouteData.Values["uid"] as string;
+            Suspend(id);
         }
         protected void Suspend(string uid)
         {
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Users SET status = 0 WHERE uid = @uid", con);
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET status = 0 WHERE id = @uid", con);
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.ExecuteNonQuery();
                 con.Close();

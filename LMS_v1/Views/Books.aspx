@@ -24,7 +24,7 @@
             <div class="col-md-3">
                 <div class="input-group">
                     <asp:TextBox ID="txtSearch"  runat="server" CssClass="form-control" placeholder="Search books..."></asp:TextBox>
-                    <asp:Button ID="btnSearch" OnClick="search" runat="server" CssClass="btn btn-info" Text="Search" />
+                    <asp:LinkButton ID="btnSc" OnClick="search" runat="server" CssClass="btn input-group-text btn-info"><i class="fas fa-search"></i></asp:LinkButton>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@ using LMS_v1.MiddleWares;
 
 namespace LMS_v1.Views.Admin
 {
-    public partial class DeleteUser : System.Web.UI.Page
+    public partial class UnsuspendUser : System.Web.UI.Page
     {
         private SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
@@ -19,15 +19,15 @@ namespace LMS_v1.Views.Admin
                 CheckAuth ca = new CheckAuth();
                 ca.AuthicatorAdmin();
             }
-            string uid = Page.RouteData.Values["uid"] as string;
-            Delete(uid);
+            string id = Page.RouteData.Values["uid"] as string;
+            Unsuspend(id);
         }
-        protected void Delete(string uid)
+        protected void Unsuspend(string uid)
         {
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Users WHERE id = @uid", con);
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET status = 1 WHERE id = @uid", con);
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.ExecuteNonQuery();
                 con.Close();

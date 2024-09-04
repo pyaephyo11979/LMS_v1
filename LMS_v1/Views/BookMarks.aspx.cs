@@ -30,10 +30,10 @@ namespace LMS_v1.Views
                     row.Cells.Add(new TableCell { Text = dr["author"].ToString() });
                     row.Cells.Add(new TableCell { Text = dr["category"].ToString() });
                     TableCell cell1 = new TableCell();
-                    cell1.Controls.Add(new LiteralControl($"<a runat='server' href='~/book/{dr["id"]}' class='btn btn-primary'>View Book <i class='fas fa-book-open'></i></a>"));
+                    cell1.Controls.Add(new LiteralControl($"<a runat='server' href='book/{dr["id"]}' class='btn btn-primary'>View Book <i class='fas fa-book-open'></i></a>"));
                     row.Cells.Add(cell1);
                     TableCell cell2 = new TableCell();
-                    cell2.Controls.Add(new LiteralControl($"<a runat='server' href='~/removebookmark/{dr["bookmark_id"]}' class='btn btn-danger'>Remove</a>"));
+                    cell2.Controls.Add(new LiteralControl($"<a runat='server' href='removebookmark/{dr["bookmark_id"]}' class='btn btn-danger'>Remove</a>"));
                     row.Cells.Add(cell2);
                     tbBookMarks.Rows.Add(row);
                 }

@@ -16,7 +16,6 @@
             <div class="col-12 container-fluid mt-2">
                         <asp:Table CssClass="table table-bordered" runat="server" ID="userTable">
                             <asp:TableHeaderRow>
-                                <asp:TableHeaderCell>UID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Username</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>FullName</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Email</asp:TableHeaderCell>

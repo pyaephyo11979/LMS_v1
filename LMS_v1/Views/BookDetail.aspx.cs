@@ -118,6 +118,7 @@ namespace LMS_v1.Views
                 cmd.Parameters.AddWithValue("@uid", user.uid);
                 cmd.Parameters.AddWithValue("@bid", bookID);
                 cmd.ExecuteNonQuery();
+                ShowAlert("Bookmark Added Successfully!");
             }
             catch(Exception ex)
             {
