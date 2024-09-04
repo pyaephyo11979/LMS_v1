@@ -42,15 +42,6 @@ namespace LMS_v1.Views
         protected global::System.Web.UI.WebControls.TextBox txtPsw;
 
         /// <summary>
-        /// btnTogglePassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnTogglePassword;
-
-        /// <summary>
         /// reqfv1 control.
         /// </summary>
         /// <remarks>

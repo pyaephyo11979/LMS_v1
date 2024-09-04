@@ -1,24 +1,7 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="LMS_v1.Views.Login" %>
 <asp:Content ID="ct2" ContentPlaceHolderID="header" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script>
-        $(document).ready(function () {
-            $('#btnTogglePassword').click(function () {
-                var txtPsw = $('#<%= txtPsw.ClientID %>');
-                var eyeIcon = $('#eyeIcon');
-                if (txtPsw.attr('type') === 'password') {
-                    txtPsw.attr('type', 'text');
-                    eyeIcon.removeClass('fa-eye');
-                    eyeIcon.addClass('fa-eye-slash');
-                } else {
-                    txtPsw.attr('type', 'password');
-                    eyeIcon.removeClass('fa-eye-slash');
-                    eyeIcon.addClass('fa-eye');
-                }
-            });
-        });
     <main>
         <div class="container" runat="server">
             <div class="mb-2">
@@ -43,12 +26,7 @@
                     </div>
                     <div class="mt-2">
                         <label class="form-label">Enter Password</label>
-                        <div class="input-group">
                         <asp:TextBox ID="txtPsw" placeholder="Password" runat="server" TextMode="Password" CssClass="form-control" ></asp:TextBox>
-                            <asp:LinkButton ID="btnTogglePassword" runat="server" OnClientClick="return false;" CssClass="btn btn-secondary input-group-text">
-                                    <i id="eyeIcon" class="fa fa-eye"></i>
-                            </asp:LinkButton>
-                        </div>
                         <asp:RequiredFieldValidator ID="reqfv1" runat="server" ErrorMessage="Please Enter Your Password" ControlToValidate="txtPsw" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mt-3">
