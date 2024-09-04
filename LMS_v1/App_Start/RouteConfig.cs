@@ -29,6 +29,9 @@ namespace LMS_v1
             routes.MapPageRoute("deleteBook", "admin/deletebook/{id}", "~/Views/Admin/DeleteBook.aspx");
             routes.MapPageRoute("UpgradeUser", "upgrade/{pid}", "~/Views/UpgradeUser.aspx");
             routes.MapPageRoute("bookMarks", "bookmarks", "~/Views/BookMarks.aspx");
+            routes.MapPageRoute("SuspendUser", "admin/suspend/{uid}", "~/Views/Admin/SuspendUser.aspx");
+            routes.MapPageRoute("DeleteUser", "admin/delete/{uid}", "~/Views/Admin/DeleteUser.aspx");
+            routes.MapPageRoute("DeleteBookMark", "removebookmark/{bid}", "~/Views/DeleteBookMark.aspx");
         }
     }
 }

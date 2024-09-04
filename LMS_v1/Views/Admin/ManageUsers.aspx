@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="LMS_v1.Views.Admin.ManageUsers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div calss="container">
+        <div calss="container-fluid">
         <div class="row">
             <div class="col-4">
                 <h4>Manage User</h4>
@@ -8,19 +8,18 @@
             <div class="col-8 row ">
                 <div class="col-9">
                 <div class="input-group ">
-                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search Books"></asp:TextBox>
-                    <asp:LinkButton ID="btnsearch" runat="server" CssClass="btn btn-info" Text="" ><i class='fas fa-search'></i></asp:LinkButton>
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search User"></asp:TextBox>
+                    <asp:LinkButton ID="btnsearch" OnClick="SearchUser" runat="server" CssClass="btn btn-info" Text="" ><i class='fas fa-search'></i></asp:LinkButton>
                 </div>
                     </div>
             </div>
-            <div class="col-12 container mt-2">
+            <div class="col-12 container-fluid mt-2">
                         <asp:Table CssClass="table table-bordered" runat="server" ID="userTable">
                             <asp:TableHeaderRow>
+                                <asp:TableHeaderCell>UID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Username</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>FullName</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Email</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Phone</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>PlanID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Stauts</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>PlanID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>ExpireDate</asp:TableHeaderCell>

@@ -37,16 +37,16 @@
             </Scripts>
         </asp:ScriptManager>
             <div class="container-fluid mt-2 row">
-                <div class="col-3">
+                <div class="col-2">
                     <div class="list-group">
-                        <a class="list-group-item disabled"> <p class="display-6">AdminPanel</p> </a>
+                        <a class="list-group-item disabled"> <h4 style="font-family:'Times New Roman';" class="">AdminPanel</h4> </a>
                         <a class="list-group-item list-group-item-action" href="~/admin/dashboard" runat="server">Dashboard</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/manageUsers" runat="server">Members</a>
                         <a class="list-group-item list-group-item-action" href="~/admin/manageBooks" runat="server">Books </a>
                         <a class="list-group-item list-group-item-action" href="~/logout" runat="server">Logout</a>
                     </div>
                 </div>
-                <div class="col-8 container body-content">
+                <div class="col-9 container body-content">
                      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
                      </asp:ContentPlaceHolder>
                 </div>

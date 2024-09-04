@@ -21,13 +21,13 @@
                                 <% } %>
                         </div>
                     <div class="mt-2">
-                        <label class="form-label">Enter Your Email</label>
-                        <asp:TextBox ID="txtEmail"  runat="server" TextMode="Email" CssClass="form-control" ToolTip="Enter your username or email address" ></asp:TextBox>
-                        <asp:RegularExpressionValidator ControlToValidate="txtEmail" ID="regValidatorEmailLogin" ErrorMessage="Please Enter valid Email" ForeColor="Red" runat="server" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                        <label class="form-label">Enter Your Username or Email</label>
+                        <asp:TextBox ID="txtEmail" placeholder="Username or Email" runat="server"  CssClass="form-control" ToolTip="Enter your username or email address" ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="reqfv" runat="server" ErrorMessage="Please Enter Your username or Email" ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mt-2">
                         <label class="form-label">Enter Password</label>
-                        <asp:TextBox ID="txtPsw" runat="server" TextMode="Password" CssClass="form-control" ></asp:TextBox>
+                        <asp:TextBox ID="txtPsw" placeholder="Password" runat="server" TextMode="Password" CssClass="form-control" ></asp:TextBox>
                     </div>
                     <div class="mt-3">
                         <asp:Button ID="btnLogin"  CssClass="btn btn-outline-dark" runat="server" Text="Login" OnClick="btnLogin_Click" />
