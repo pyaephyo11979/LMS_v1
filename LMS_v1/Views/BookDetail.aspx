@@ -41,6 +41,10 @@
                             <div class="col-md-3">
                                 <% var user = (LMS_v1.Models.User)Session["user"]; if (user !=null && ((user.bookLimit >0 && user.expdate > DateTime.Now) || (user.isUnlimited == 1 && user.expdate > DateTime.Now)) ) {  %>
                                 <asp:LinkButton runat="server" ID="btnDownloadBook" OnClick="DownloadFile" CssClass="btn btn-primary mt-1" > Download <i class="fas fa-download"></i></asp:LinkButton>
+                                <%} else if(user != null && user.bookLimit <= 0) {  %>
+                                <p>Your downloadable book Limit is exceed . Please <a href="profile">Upgrade now</a></p>
+                                <%} else if(user != null && user.expdate < DateTime.Now) { %>
+                                <p>Your subscription is expired. Please <a href="profile">Renew now</a></p>
                                 <%} %>
                                 <asp:LinkButton runat="server" OnClick="BookMark" CssClass="btn btn-info mt-1" ID="btnToBookmark" >
                                     <i class="fas fa-bookmark"></i> 

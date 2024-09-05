@@ -13,6 +13,7 @@ namespace LMS_v1.Views
     public partial class Profile : System.Web.UI.Page
     {
         private SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
+        public int bookLimit = 0;
         protected void Connect()
         {
             try
@@ -31,7 +32,9 @@ namespace LMS_v1.Views
                 CheckAuth checkAuth = new CheckAuth();
                 checkAuth.Authicate();
             }
-            
+            var user= (LMS_v1.Models.User)Session["user"];
+            bookLimit = user.bookLimit;
+
         }
         protected void UpdateProfile(object sender, EventArgs e)
         {

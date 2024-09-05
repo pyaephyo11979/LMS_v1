@@ -199,7 +199,7 @@ namespace LMS_v1.Views
             try
             {
                 connect();
-                SqlCommand cmd = new SqlCommand("SELECT books.id,name,author,image,category_name FROM books,categories WHERE books.name LIKE @SearchTerm OR books.author LIKE @SearchTerm and books.category_id=categories.id", conn);
+                SqlCommand cmd = new SqlCommand("SELECT distinct books.id,name,author,image,category_name FROM books,categories WHERE books.name LIKE @SearchTerm OR books.author LIKE @SearchTerm and books.category_id=categories.id", conn);
                 cmd.Parameters.AddWithValue("@SearchTerm", "%" + txtSearch.Text + "%");
                 SqlDataReader reader = cmd.ExecuteReader();
                 StringBuilder bookCard = new StringBuilder();
@@ -223,7 +223,7 @@ namespace LMS_v1.Views
                          </div>
                         </div>
                         ");
-                        bookDisplay.InnerHtml += bookCard.ToString();
+                        bookDisplay.InnerHtml = bookCard.ToString();
                     }
                 }
                 else

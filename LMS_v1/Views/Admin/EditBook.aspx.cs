@@ -77,7 +77,7 @@ namespace LMS_v1.Views.Admin
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Update table books set image=@image where id=@id");
+                SqlCommand cmd = new SqlCommand("Update  books set image=@image where id=@id",con);
                 cmd.Parameters.AddWithValue("@image", fileImg.FileName);
                 cmd.Parameters.AddWithValue("@id", bid);
                 string path= Server.MapPath("~/uploads/bookCovers/");
@@ -98,7 +98,7 @@ namespace LMS_v1.Views.Admin
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Update table books set name=@name where id=@id");
+                SqlCommand cmd = new SqlCommand("Update  books set name=@name where id=@id",con);
                 cmd.Parameters.AddWithValue("@name", txtTitle.Text);
                 cmd.Parameters.AddWithValue("@id", bid);
                 cmd.ExecuteNonQuery();
@@ -119,7 +119,7 @@ namespace LMS_v1.Views.Admin
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Update table books set author=@author where id=@id");
+                SqlCommand cmd = new SqlCommand("Update  books set author=@author where id=@id",con);
                 cmd.Parameters.AddWithValue("@author", txtAuthor.Text);
                 cmd.Parameters.AddWithValue("@id", bid);
                 cmd.ExecuteNonQuery();
@@ -140,7 +140,7 @@ namespace LMS_v1.Views.Admin
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Update table books set description=@description where id=@id");
+                SqlCommand cmd = new SqlCommand("Update  books set description=@description where id=@id",con);
                 cmd.Parameters.AddWithValue("@description", txtDescription.Text);
                 cmd.Parameters.AddWithValue("@id", bid);
                 cmd.ExecuteNonQuery();
@@ -161,7 +161,7 @@ namespace LMS_v1.Views.Admin
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Update table books set category_id=@categoryId where id=@id");
+                SqlCommand cmd = new SqlCommand("Update  books set category_id=@categoryId where id=@id",con);
                 cmd.Parameters.AddWithValue("@categoryID",ddlCtg.SelectedValue);
                 cmd.Parameters.AddWithValue("@id", bid);
                 cmd.ExecuteNonQuery();

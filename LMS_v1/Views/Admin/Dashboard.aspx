@@ -1,12 +1,25 @@
 ﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="LMS_v1.Views.Admin.StaticsPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <div class="row">
+        <h4 class="display-4 ms-1">Dashboard</h4>
+        <div class="row mt-1">
             <div class="col-4">
-                <canvas id="userViewChart"></canvas>
+                <div class="card rounded-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Total Books <br /> <i class="fas fa-book"></i> </h5>
+                        <p class="card-text text-center fw-bold"><%= totalBooks %></p>
+                     </div>
+                </div>
             </div>
-            <div class="col-8">
-                <canvas id="bookViewChart"></canvas>
+            <div class="col-4">
+                <div class="card rounded-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Total Active Users <br />
+                            <i class="fas fa-user"></i>
+                        </h5>
+                        <p class="card-text text-center fw-bold"><%= totalUsers %></p>
+                     </div>
+                </div>
             </div>
         </div>
     </div>

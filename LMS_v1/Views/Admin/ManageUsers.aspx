@@ -3,7 +3,7 @@
         <div calss="container-fluid">
         <div class="row">
             <div class="col-4">
-                <h4>Manage User</h4>
+                <h4>Manage Members</h4>
             </div>
             <div class="col-8 row ">
                 <div class="col-9">

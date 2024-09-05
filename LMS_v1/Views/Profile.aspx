@@ -48,6 +48,9 @@
                                 <% } %>
                             </div>
                             <div class="col-12">
+                                <p>BookLimitLeft: <%= bookLimit %></p>
+                            </div>
+                            <div class="col-12">
                                 <% int level = Convert.ToInt32(user.planID); switch(level) {  %>
                                 <% case 1: %>
                                 <p>Plan: <span class="text-secondary">Free</span></p>
