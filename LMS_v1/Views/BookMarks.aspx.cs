@@ -21,7 +21,7 @@ namespace LMS_v1.Views
                 cmd.Parameters.AddWithValue("@user_id", user.uid.ToString());
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read()) {
+                while (dr.Read()) {
                     TableRow row= new TableRow();
                     TableCell cell = new TableCell();
                     cell.Controls.Add(new LiteralControl($"<img src='/uploads/bookCovers/{dr["image"]}' alt='book image' class='img-thumbnail' style='width:100px;height:100px;' />"));

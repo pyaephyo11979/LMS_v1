@@ -19,7 +19,7 @@
 <body>
     <form runat="server">
         <% var user = (LMS_v1.Models.User)Session["user"]; %>
-                <div runat="server" class="modal modal-lg" id="upgradeModel">
+                <div runat="server" class="modal modal-lg" style="min-width:500px;" id="upgradeModel">
         <div class=" modal-dialog  modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">

@@ -21,6 +21,10 @@
                      </div>
                 </div>
             </div>
+            <div class="col-12 mt-1">
+                <h4 class="display-6">Recently Added Books</h4>
+                <div class="row mt-1" runat="server"  id="bookDisplay"></div>
+            </div>
         </div>
     </div>
 </asp:Content>

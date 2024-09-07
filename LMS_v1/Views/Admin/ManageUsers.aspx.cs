@@ -28,7 +28,7 @@ namespace LMS_v1.Views.Admin
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(
-                    "SELECT u.id, u.username, u.email, u.fullname, u.phone, u.role_id, u.image, u.last_active, u.plan_id, u.status, " +
+                    "SELECT u.id, u.username, u.email, u.fullname, u.role_id,  u.last_active, u.plan_id, u.status, " +
                     "s.booklimit, s.id as subscriptionID, s.expires_at, s.isUnlimited " +
                     "FROM users u " +
                     "JOIN subscriptions s ON u.id = s.user_id " +
@@ -90,7 +90,7 @@ namespace LMS_v1.Views.Admin
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(
-                    "SELECT u.id, u.username, u.email, u.fullname, u.phone, u.role_id, u.image, u.last_active, u.plan_id, u.status, " +
+                    "SELECT u.id, u.username, u.email, u.fullname,  u.role_id, u.last_active, u.plan_id, u.status, " +
                     "s.booklimit, s.id as subscriptionID, s.expires_at, s.isUnlimited " +
                     "FROM users u " +
                     "JOIN subscriptions s ON u.id = s.user_id " +

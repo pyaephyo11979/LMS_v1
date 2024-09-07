@@ -114,11 +114,23 @@ namespace LMS_v1.Views
             {
                 conn.Open();
                 var user = (LMS_v1.Models.User)Session["user"];
-                SqlCommand cmd = new SqlCommand("insert into bookmarks(user_id,book_id) values(@uid,@bid)", conn);
-                cmd.Parameters.AddWithValue("@uid", user.uid);
-                cmd.Parameters.AddWithValue("@bid", bookID);
-                cmd.ExecuteNonQuery();
-                ShowAlert("Bookmark Added Successfully!");
+                SqlCommand cmd1 = new SqlCommand("SELECT * FROM bookmarks WHERE user_id=@uid AND book_id=@bid", conn);
+                cmd1.Parameters.AddWithValue("@uid", user.uid);
+                cmd1.Parameters.AddWithValue("@bid", bookID);
+                SqlDataReader rd = cmd1.ExecuteReader();
+                rd.Read();
+                if (rd.HasRows) {
+                    ShowAlert("Book already bookmarked!");
+                }
+                else
+                {
+                    rd.Close();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO bookmarks(user_id,book_id) VALUES(@uid,@bid)", conn);
+                    cmd.Parameters.AddWithValue("@uid", user.uid);
+                    cmd.Parameters.AddWithValue("@bid", bookID);
+                    cmd.ExecuteNonQuery();
+                    ShowAlert("Book bookmarked successfully!");
+                }
             }
             catch(Exception ex)
             {
