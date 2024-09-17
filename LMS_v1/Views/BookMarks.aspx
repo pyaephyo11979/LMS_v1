@@ -2,8 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    
+     <style>
+     .bookr{
+         background-color:#f9f2ea;
+     }
+ </style>
+
     <div class="conatiner">
-        <div class="row">
+        <div class="row bookr">
             <div class="col-5">
                 <h4>BookMarks <i class="fas fa-bookmark"></i></h4>
             </div>

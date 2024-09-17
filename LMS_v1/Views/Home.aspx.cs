@@ -38,33 +38,9 @@ namespace LMS_v1.Views
                 ds = new DataSet();
                 StringBuilder bookCard = new StringBuilder();
                 da.Fill(ds);
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                {
-                    DataTable dt = ds.Tables[0];
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        string id = row["id"].ToString();
-                        string name = row["name"].ToString();
-                        string imageurl = row["image"].ToString();
-                        string description = row["description"].ToString();
-                        string author = row["author"].ToString();
-                        string categoryName= row["category_name"].ToString();
-                        bookCard.Append($@"
-                         <div class='card col-2 m-1'>
-                         <div class='card-body'>
-                        <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
-                         <p class='card-title text-decoration-bold'>{name}</p>
-                         </div>
-                        </div>
-                        ");
-                        latestBooks.InnerHtml = bookCard.ToString();
-                    }
-                }
-                else
-                {
-                    latestBooks.InnerHtml = "";
-                    latestBooks.InnerHtml = "<h1>No books available</h1>";
-                }
+                DataTable dt = ds.Tables[0];
+                rptltBooks.DataSource= dt;
+                rptltBooks.DataBind();
             }
             catch (Exception ex)
             {

@@ -15,7 +15,16 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css" integrity="sha512-8BU3emz11z9iF75b10oPjjpamM4Mz23yQFQymbtwyPN3mNWHxpgeqyrYnkIUP6A8KyAj5k2p3MiYLtYqew7gIw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    body{
+        background-color:#cccccc;
+    }.side{
+         background-color:#b3b3b3; 
+     }
+        
+    </style>
 </head>
+
 <body>
     <form id="form1" runat="server">
                 <asp:ScriptManager runat="server">
@@ -36,17 +45,72 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-            <div class="container-fluid mt-2 row">
-                <div class="col-2">
-                    <div class="list-group">
-                        <a class="list-group-item disabled"> <h4 style="font-family:'Times New Roman';" class="">AdminPanel</h4> </a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/dashboard" runat="server">Dashboard</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/manageUsers" runat="server">Members</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/manageBooks" runat="server">Books </a>
-                        <a class="list-group-item list-group-item-action" href="~/logout" runat="server">Logout</a>
+            <div class="container-fluid row">
+                <div class="col-2 d-none side" id="sideNav" >
+                    <div class="row mt-2" style="position:fixed; width:260px;" >
+                        <div class="col-11 m-1 card " style="background-color:black; color:azure;">
+                            <div class="card-body">
+                                <h5 class="card-title">Admin Panel</h5>
+                            </div>
+                        </div>
+                        <a class="card col-11 text-black m-1 side text-decoration-none" href="~/admin/dashboard" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text">Dashboard</h5>
+                            </div>
+                        </a>
+                        <a class="card col-11 text-black m-1 side text-decoration-none" href="~/admin/manageUsers" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text">Members</h5>
+                            </div>
+                        </a>
+                        <a class="card col-11 side text-black m-1 text-decoration-none" href="~/admin/manageBooks" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text">Books</h5>
+                            </div>
+                        </a>
+                        <a class="card col-11 side text-black m-1 text-decoration-none " href="~/logout" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text">Logout</h5>
+                            </div>
+                        </a>                        
                     </div>
                 </div>
-                <div class="col-9 container body-content">
+                <div class="col-1  side" id="minisideNav" >
+                    <div class="row mt-2" style="position:fixed;  width:130px;" >
+                        <div class="card col-11  m-1  side " style="background-color:black; color:azure" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text text-center"><i class="fas fa-user-tie"></i></h5>
+                            </div>
+                        </div>
+                        <a class="card col-11 text-black m-1  side text-decoration-none" href="~/admin/dashboard" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text text-center"><i class="fas fa-chart-line"></i></h5>
+                            </div>
+                        </a>
+                        <a class="card col-11 text-black m-1  side text-decoration-none" href="~/admin/manageUsers" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text text-center"><i class="fas fa-users"></i></h5>
+                            </div>
+                        </a>
+                        <a class="card col-11 side text-black  m-1 text-decoration-none" href="~/admin/manageBooks" runat="server">
+                            <div class="card-body ">
+                                <h5 class="card-text text-center"><i class="fas fa-book"></i></h5>
+                            </div>
+                        </a>
+                        <a class="card col-11 side text-black m-1  text-decoration-none " href="~/logout" runat="server">
+                            <div class="card-body">
+                                <h5 class="card-text text-center"><i class="fas fa-right-from-bracket"></i></h5>
+                            </div>
+                        </a>                        
+                    </div>
+                </div>                
+                <div class="container-fluid col-11 body-content"  id="mainDiv">
+                <nav class="container-fluid sticky-top navbar navbar navbar-expand" style="background-color:#cccccc;">
+                    <button id="mnBtn" type="button" class="btn miniToggle me-2" style="font-size:20px;"><i class="fas fa-bars"></i></button>
+                    <div class="navbar-brand" id="nvB">
+                        <h4>Admin Panel</h4>
+                    </div>
+                </nav>                    
                      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
                      </asp:ContentPlaceHolder>
                 </div>
@@ -57,4 +121,14 @@
     </asp:PlaceHolder>
 </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js" integrity="sha512-7DgGWBKHddtgZ9Cgu8aGfJXvgcVv4SWSESomRtghob4k4orCBUTSRQ4s5SaC2Rz+OptMqNk0aHHsaUBk6fzIXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript">
+            let menubtn = document.getElementById("mnBtn");
+            menubtn.addEventListener("click", (e) => {
+                document.getElementById("sideNav").classList.toggle("d-none");
+                document.getElementById("mainDiv").classList.toggle("col-9");
+                document.getElementById("mainDiv").classList.toggle("col-11");
+                document.getElementById("nvB").classList.toggle("d-none");
+                document.getElementById("minisideNav").classList.toggle("d-none");
+            })
+        </script>
 </html>

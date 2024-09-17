@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,6 +18,7 @@ namespace LMS_v1.Views
     {
         private int bookLimit;
         private SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
+        Var[] bookArray = null;
         protected void connect()
         {
             try
@@ -78,30 +80,13 @@ namespace LMS_v1.Views
             try
             {
                 SqlCommand cmd = new SqlCommand("select books.id,name,author,image,category_name from books,categories where books.category_id=categories.id", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                StringBuilder bookCard = new StringBuilder();
-                bookDisplay.InnerHtml = "";
-                while (reader.Read())
-                {
-                    string id = reader["id"].ToString();
-                    string name = reader["name"].ToString();
-                    string imageurl = reader["image"].ToString();
-                    string author = reader["author"].ToString();
-                    string categoryName = reader["category_name"].ToString();
-                    bookCard.Append($@"
-                         <div class='card col-3 m-2'>
-                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
-                         <div class='card-body'>
-                         <h5 class='card-title'>{name}</h5>
-                            <p class='card-text'>{author}</p>
-                            <p class='card-text'>{categoryName}</p>
-                            <a href='book\{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
-                         </div>
-                        </div>
-                        ");
-                    bookDisplay.InnerHtml = bookCard.ToString();
-                }
-                reader.Close();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt=ds.Tables[0];
+                rptBook.DataSource = dt;
+                rptBook.DataBind();
+
             }
             catch (Exception ex)
             {
@@ -130,8 +115,6 @@ namespace LMS_v1.Views
                 SqlCommand cmd = new SqlCommand();
                 SqlDataAdapter da;
                 DataSet ds;
-                StringBuilder bookCard = new StringBuilder();
-                bookDisplay.InnerHtml = "";
                 connect();
                 if (ddlcategory.SelectedIndex > 0 && ddlauthor.SelectedIndex > 0)
                 {
@@ -149,41 +132,18 @@ namespace LMS_v1.Views
                     cmd.CommandText = "SELECT books.id, name, author, image, category_name FROM books JOIN categories ON books.category_id = categories.id WHERE books.author = @Author";
                     cmd.Parameters.AddWithValue("@Author", ddlauthor.SelectedValue);
                 }
+                else if(ddlcategory.SelectedIndex == 0 && ddlauthor.SelectedIndex == 0)
+                {
+                    cmd.CommandText = "SELECT books.id, name, author, image, category_name FROM books JOIN categories ON books.category_id = categories.id ";
+                    cmd.Parameters.AddWithValue("@Author", ddlauthor.SelectedValue);
+                }
                 cmd.Connection = conn;
                 da = new SqlDataAdapter(cmd);
                 ds = new DataSet();
                 da.Fill(ds);
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                {
-                    DataTable dt = ds.Tables[0];
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        string id = row["id"].ToString();
-                        string name = row["name"].ToString();
-                        string imageurl = row["image"].ToString();
-                        string author = row["author"].ToString();
-                        string categoryName = row["category_name"].ToString();
-
-                        bookCard.Append($@"
-                         <div class='card col-3 m-2'>
-                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top' alt='{name}' />
-                         <div class='card-body'>
-                         <h5 class='card-title'>{name}</h5>
-                            <p class='card-text'>{author}</p>
-                            <p class='card-text'>{categoryName}</p>
-                            <a href='book/{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
-                         </div>
-                        </div>
-                        ");
-                        bookDisplay.InnerHtml += bookCard.ToString();
-                    }
-                }
-                else
-                {
-                    bookDisplay.InnerHtml = "<h4>No Matched Books </h4>";
-                }
-                ddlcategory.SelectedIndex = 0;
-                ddlauthor.SelectedIndex = 0;
+                DataTable dt = ds.Tables[0];
+                rptBook.DataSource = dt;
+                rptBook.DataBind();
             }
             catch (Exception ex)
             {
@@ -199,37 +159,14 @@ namespace LMS_v1.Views
             try
             {
                 connect();
-                SqlCommand cmd = new SqlCommand("SELECT distinct books.id,name,author,image,category_name FROM books,categories WHERE books.name LIKE @SearchTerm OR books.author LIKE @SearchTerm and books.category_id=categories.id", conn);
+                SqlCommand cmd = new SqlCommand("SELECT distinct books.id,name,author,image,category_name FROM books,categories WHERE books.category_id=categories.id and (books.name LIKE @SearchTerm OR books.author LIKE @SearchTerm)", conn);
                 cmd.Parameters.AddWithValue("@SearchTerm", "%" + txtSearch.Text + "%");
-                SqlDataReader reader = cmd.ExecuteReader();
-                StringBuilder bookCard = new StringBuilder();
-                bookDisplay.InnerHtml = "";
-                if (reader.HasRows) {
-                    while (reader.Read())
-                    {
-                        string id = reader["id"].ToString();
-                        string name = reader["name"].ToString();
-                        string imageurl = reader["image"].ToString();
-                        string author = reader["author"].ToString();
-                        string categoryName = reader["category_name"].ToString();
-                        bookCard.Append($@"
-                         <div class='card col-3 m-2'>
-                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
-                         <div class='card-body'>
-                         <h5 class='card-title'>{name}</h5>
-                            <p class='card-text'>{author}</p>
-                            <p class='card-text'>{categoryName}</p>
-                            <a href='book\{id}' class='d-inline text-decoration-none text-secondary'>See More..</a>
-                         </div>
-                        </div>
-                        ");
-                        bookDisplay.InnerHtml = bookCard.ToString();
-                    }
-                }
-                else
-                {
-                    bookDisplay.InnerHtml = "<h4>No Matched Books </h4>";
-                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                rptBook.DataSource = dt;
+                rptBook.DataBind();
             }
             catch(Exception ex)
             {
@@ -240,6 +177,11 @@ namespace LMS_v1.Views
 
                 conn.Close();
             }
+        }
+        protected void clrFilter(object sender, EventArgs e)
+        {
+            ddlcategory.SelectedIndex = 0;
+            ddlauthor.SelectedIndex = 0;
         }
     }
 }

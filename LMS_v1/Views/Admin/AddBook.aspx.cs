@@ -64,7 +64,7 @@ namespace LMS_v1.Views.Admin
                 fuBookFile.PostedFile.SaveAs(path2);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("insert into books(name,author,description,category_id,image,[file]) values(@name,@author,@description,@category_id,@image,@file)", conn);
-                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@name",  name);
                 cmd.Parameters.AddWithValue("@author", author);
                 cmd.Parameters.AddWithValue("@description", description);
                 cmd.Parameters.AddWithValue("@category_id", category_id);

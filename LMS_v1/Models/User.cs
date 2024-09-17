@@ -18,7 +18,7 @@ namespace LMS_v1.Models
         public int status { get; set; }
         public DateTime expdate { get; set; }
         public int bookLimit { get; set; }
-        public int isUnlimited { get; set; }
+        public String isUnlimited { get; set; }
         public int subscriptionID { get; set; }
     }
 }

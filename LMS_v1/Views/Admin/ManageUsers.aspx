@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="LMS_v1.Views.Admin.ManageUsers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div calss="container-fluid">
+   <style>
+       .mgm{
+           background-color:#b3b3b3; 
+       }
+   </style>   
+    
+    <div calss="container">
         <div class="row">
             <div class="col-4">
                 <h4>Manage Members</h4>
@@ -13,8 +19,8 @@
                 </div>
                     </div>
             </div>
-            <div class="col-12 container-fluid mt-2">
-                        <asp:Table CssClass="table table-bordered" runat="server" ID="userTable">
+            <div class="col-11 container ms-2 mt-2 ">
+                        <asp:Table CssClass="table table-bordered mgm" runat="server" ID="userTable">
                             <asp:TableHeaderRow>
                                 <asp:TableHeaderCell>Username</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>FullName</asp:TableHeaderCell>

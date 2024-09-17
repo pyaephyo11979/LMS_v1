@@ -45,7 +45,7 @@ namespace LMS_v1.Views
 
                 User user = getUserDetail(email);
                 Session["user"] = user;
-                
+                Session.Timeout = 60;
 
                 if (user != null && (user.role == "2" && user.status == 1)) 
                 {
@@ -75,9 +75,6 @@ namespace LMS_v1.Views
                 connect();
                 SqlCommand cmd1 = new SqlCommand("SELECT users.id,users.username,users.email,users.fullname,users.phone,users.role_id,users.image,users.plan_id,users.status,subscriptions.booklimit,subscriptions.id as subscriptionID,subscriptions.expires_at,subscriptions.isUnlimited FROM users join subscriptions on users.id=subscriptions.user_id where (users.email=@Email or users.username=@Email)", cn);
                 cmd1.Parameters.AddWithValue("@Email", email);
-                SqlCommand cmd2 = new SqlCommand("update users set last_active=getdate() where email=@Email", cn);
-                cmd2.Parameters.AddWithValue("@Email", email);
-                cmd2.ExecuteNonQuery();
                 SqlDataReader rd = cmd1.ExecuteReader();
                 if (rd.Read())
                 {
@@ -94,11 +91,14 @@ namespace LMS_v1.Views
                         status = Convert.ToInt32(rd["status"]),
                         expdate = Convert.ToDateTime(rd["expires_at"]),
                         bookLimit = Convert.ToInt32(rd["booklimit"]),
-                        isUnlimited = Convert.ToInt32(rd["isUnlimited"]),
+                        isUnlimited = rd["isUnlimited"].ToString(),
                         subscriptionID = Convert.ToInt32(rd["subscriptionID"])
                     };
                 }
                 rd.Close();
+                SqlCommand cmd2 = new SqlCommand("update users set last_active=getdate() where email=@Email or username=@Email", cn);
+                cmd2.Parameters.AddWithValue("@Email", email);
+                cmd2.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

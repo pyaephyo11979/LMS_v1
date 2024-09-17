@@ -2,10 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
-        <div class="card">
+   <style>
+       .bgc{
+           background-color:#f9f2ea;
+       }
+   </style>
+    <div class="container " >
+        <div class="card bgc">
             <div class="card-header">
-                <asp:Label ID="lblTitle" runat="server" CssClass="display-3"></asp:Label>
+                <asp:Label ID="lblTitle" runat="server" CssClass="display-4"></asp:Label>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -39,10 +44,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <% var user = (LMS_v1.Models.User)Session["user"]; if (user !=null && ((user.bookLimit >0 && user.expdate > DateTime.Now) || (user.isUnlimited == 1 && user.expdate > DateTime.Now)) ) {  %>
+                                <% var user = (LMS_v1.Models.User)Session["user"]; if (user !=null && ((user.bookLimit >0 && user.expdate > DateTime.Now) || (user.isUnlimited == "True" && user.expdate > DateTime.Now)) ) {  %>
                                 <asp:LinkButton runat="server" ID="btnDownloadBook" OnClick="DownloadFile" CssClass="btn btn-primary mt-1" > Download <i class="fas fa-download"></i></asp:LinkButton>
                                 <%} else if(user != null && user.bookLimit <= 0) {  %>
-                                <p>Your downloadable book Limit is exceed . Please <a href="profile">Upgrade now</a></p>
+                                <p>Your downloadable book Limit is exceed . Please <a runat="server" href="profile" class="btn btn-info">Upgrade now</a></p>
                                 <%} else if(user != null && user.expdate < DateTime.Now) { %>
                                 <p>Your subscription is expired. Please <a href="profile">Renew now</a></p>
                                 <%} %>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace LMS_v1.Views.Admin
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
         public int totalBooks = 0;
         public int totalUsers = 0;
+        public int totalActiveUsers = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -36,6 +38,9 @@ namespace LMS_v1.Views.Admin
                 totalBooks = (int)cmd.ExecuteScalar();
                 query = "Select count(*) from users where role_id=1 and status=1";
                 cmd = new SqlCommand(query, con);
+                totalActiveUsers = (int)cmd.ExecuteScalar();
+                query = "Select count(*) from users where role_id=1";
+                cmd = new SqlCommand(query, con);
                 totalUsers = (int)cmd.ExecuteScalar();
                 con.Close();
             }
@@ -54,30 +59,12 @@ namespace LMS_v1.Views.Admin
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand("select books.id,name,author,image,category_name from books,categories where books.category_id=categories.id order by books.created_at desc", con);
-                SqlDataReader reader = cmd.ExecuteReader();
-                StringBuilder bookCard = new StringBuilder();
-                bookDisplay.InnerHtml = "";
-                while (reader.Read())
-                {
-                    string id = reader["id"].ToString();
-                    string name = reader["name"].ToString();
-                    string imageurl = reader["image"].ToString();
-                    string author = reader["author"].ToString();
-                    string categoryName = reader["category_name"].ToString();
-                    bookCard.Append($@"
-                         <div class='card col-3 m-2' style='max-length:200px;'>
-                         <img src='/uploads/bookCovers/{imageurl}' class='card-img-top'  alt='{name}' />
-                         <div class='card-body'>
-                         <h5 class='card-title'>{name}</h5>
-                            <p class='card-text'>{author}</p>
-                            <p class='card-text'>{categoryName}</p>
-                            <a href='editbook\{id}' class='d-inline btn btn-info'>Edit Book</a>
-                         </div>
-                        </div>
-                        ");
-                    bookDisplay.InnerHtml = bookCard.ToString();
-                }
-                reader.Close();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                rptBooks.DataSource = dt;
+                rptBooks.DataBind();
             }
             catch (Exception ex)
             {

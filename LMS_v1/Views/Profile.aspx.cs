@@ -14,6 +14,7 @@ namespace LMS_v1.Views
     {
         private SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["LMSDB"].ConnectionString);
         public int bookLimit = 0;
+        public string IsUnlimited = "";
         protected void Connect()
         {
             try
@@ -34,7 +35,7 @@ namespace LMS_v1.Views
             }
             var user= (LMS_v1.Models.User)Session["user"];
             bookLimit = user.bookLimit;
-
+            IsUnlimited = user.isUnlimited;
         }
         protected void UpdateProfile(object sender, EventArgs e)
         {
@@ -53,7 +54,7 @@ namespace LMS_v1.Views
                 Response.Redirect("profile");
             }
             catch (Exception ex) {
-                Response.Write(ex.Message);
+                ShowAlert(ex.Message);
             }
             finally
             {
@@ -78,7 +79,7 @@ namespace LMS_v1.Views
             }
             catch (Exception ex)
             {
-                Response.Write(ex.Message);
+                ShowAlert(ex.Message);
             }
             finally
             {
@@ -163,6 +164,14 @@ namespace LMS_v1.Views
                 }
                 return builder.ToString();
             }
+        }
+        private void ShowAlert(string message)
+        {
+            StringBuilder alertScript = new StringBuilder();
+            alertScript.Append("<script type='text/javascript'>" +
+                $"alert('{message}');" +
+                "</script>");
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", alertScript.ToString());
         }
     }
 }

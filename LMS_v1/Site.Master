@@ -15,68 +15,136 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css" integrity="sha512-8BU3emz11z9iF75b10oPjjpamM4Mz23yQFQymbtwyPN3mNWHxpgeqyrYnkIUP6A8KyAj5k2p3MiYLtYqew7gIw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<style>
+    nav{
+        background-color: #d4c2aa;
+    }
+    .nava{
+        position:relative;
+        
+    }
+    .nava:after{
+        
+        content:'';
+        opacity:0;
+        transition:all 0.2s;
+        height:2px;
+        width:100%;
+        background-color:#bd9120;
+        
+        position:absolute;
+        bottom:0;
+        left:0;
+    }
+    .nava:hover::after{
+        opacity:1;
+
+    }
+    .nava:hover{
+        color:maroon;
+    }
+    .ft{
+        /*background-color:#e8f7ff;*/
+
+    }
+    body{
+        background-color:#ece3d4;
+    }
+                       .upgbtn{
+            background-color: #d4ba91;
+color: maroon;
+border-radius: 5px;
+width: 80px;
+height: 40px;
+text-decoration: none;
+font-size: 15px;
+padding: 7px;
+text-align: center;
+margin: 2px;
+border: 0px;
+margin-left: 100px;
+       }
+        .upgbtn:hover {
+    background-color::#ece3d4;
+    color: maroon;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+        .upgbx{
+            background-color::#ece3d4;
+        }
+        .upgcard:hover{
+            border:2px solid #d4ba91;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .pr{
+            color:maroon;
+        }
+</style>
+
 </head>
+    
 <body>
     <form runat="server">
         <% var user = (LMS_v1.Models.User)Session["user"]; %>
-                <div runat="server" class="modal modal-lg" style="min-width:500px;" id="upgradeModel">
+                <div runat="server" class="modal modal-xl"  id="upgradeModel">
         <div class=" modal-dialog  modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="">Upgrade for More Features</h4>
+            <div class="modal-content upgbx">
+                <div class="modal-header align-items-center">
+                    <h4 style="color:maroon;">Upgrade for More Features</h4>
                     <button class="btn btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card upgcard">
                                 <div class="card-body">
-                                    <h5 class="card-title">Basic</h5>
+                                    <h5 class="card-title" style="color:maroon;">Basic</h5>
                                     <ul style="list-style:disc;">
                                         <li>Download Books Up to 10 books per month</li>
                                         <li>Bookmark Books</li>
                                     </ul>
-                                    <p>Price: $ 5.99/Month</p>
-                                    <a class="btn btn-success" runat="server" href="~/upgrade/2">Upgrade</a>
+                                    <p class="pr">Price: $ 5.99/Month</p>
+                                    <a class="btn btn-success upgbtn" runat="server" href="~/upgrade/2">Upgrade</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card upgcard">
                                 <div class="card-body">
-                                    <h5 class="card-title">Standard</h5>
+                                    <h5 class="card-title" style="color:maroon;">Standard</h5>
                                     <ul style="list-style:disc;">
                                         <li>Download Books Up to 20 books per month</li>
                                         <li>Bookmark Books</li>
                                     </ul>
-                                    <p>Price: $ 9.99/Month</p>
-                                    <a class="btn btn-success" runat="server" href="~/upgrade/3">Upgrade</a>
+                                    <p class="pr">Price: $ 9.99/Month</p>
+                                    <a class="btn btn-success upgbtn" runat="server" href="~/upgrade/3">Upgrade</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card upgcard">
                                 <div class="card-body">
-                                    <h5 class="card-title">Premium</h5>
+                                    <h5 class="card-title" style="color:maroon;">Premium</h5>
                                     <ul style="list-style:disc;">
                                         <li>Download Books Up to 30 books per month</li>
                                         <li>Bookmark Books</li>
                                     </ul>
-                                    <p>Price: $ 14.99/Month</p>
-                                    <a class="btn btn-success" runat="server" href="~/upgrade/4">Upgrade</a>
+                                    <p class="pr">Price: $ 14.99/Month</p>
+                                    <a class="btn btn-success upgbtn" runat="server" href="~/upgrade/4">Upgrade</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card upgcard">
                                 <div class="card-body">
-                                    <h5 class="card-title">Unlimited</h5>
+                                    <h5 class="card-title" style="color:maroon;">Unlimited</h5>
                                     <ul style="list-style:disc;">
                                         <li>Download Unlimited Books!</li>
                                         <li>Bookmark Books</li>
                                     </ul>
-                                    <p>Price: $ 29.99/Month</p>
-                                    <a class="btn btn-success" runat="server" href="~/upgrade/5">Upgrade</a>
+                                    <p class="pr">Price: $ 29.99/Month</p>
+                                    <a class="btn btn-success upgbtn" runat="server" href="~/upgrade/5">Upgrade</a>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +153,7 @@
             </div>
         </div>
     </div>
+
 
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -105,8 +174,8 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-                <a class="navbar-brand display-3 ms-3" runat="server" href="~/">
+        <nav class="navbar navbar-expand-sm text-danger sticky-top navbar-toggleable-sm">
+                <a class="navbar-brand display-3 ms-3" style="color:  maroon; font-weight: bold; font-size: 25px;" runat="server" href="~/">
                     KonohaDigitalLibrary
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
@@ -114,13 +183,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse  navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/books">Books</a></li>
+                    <ul class="navbar-nav container flex-grow-1">
+                        <li class="nav-item"><a class="nav-link nava" style="font-size: 18px;" runat="server" href="~/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link nava" style="font-size: 18px;" runat="server" href="~/books">Books</a></li>
+                        <div class="flex-fill"></div>
                         <% if (Session["user"] == null)
                             {  %>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" >User <i calss="fas fa-user"></i></a>
+                        <li class="nav-item dropdown ddlUsActivity">
+                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown"style="font-size:18px;" ><i class="fas fa-user" style="color: maroon;"></i></a>
                             <div class=" dropdown-menu dropdown-menu-end dropdown">
                                 <a class="dropdown-item" runat="server" href="~/login">Login</a>
                                 <a class="dropdown-item" runat="server" href="~/register">SignUp</a>
@@ -130,8 +200,8 @@
                             else
                             {
                                  %>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" ><%= user.username %></a>
+                        <li class="nav-item dropdown ddlUSActivity">
+                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size:18px" ><%= user.username %></a>
                             <div class=" dropdown-menu dropdown-menu-end dropdown">
                                 <a class="dropdown-item" runat="server" href="~/profile">Profile</a>
                                 <a class="dropdown-item" runat="server" href="~/bookmarks">Bookmarks</a>
@@ -142,17 +212,22 @@
                     </ul>
                 </div>
         </nav>
-        <div class="container body-content">
+        <div class="container body-content ft">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Konoah Library</p>
+                <p style="color:maroon;">&copy; <%: DateTime.Now.Year %> - Konoha Library</p>
+                <a class="text-decoration-none " style="color:maroon;" runat="server"  href="mailto:.librarykonoha@gmail.com">librarykonoha@gmail.com</a>
             </footer>
         </div>
     </form>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
     </asp:PlaceHolder>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
