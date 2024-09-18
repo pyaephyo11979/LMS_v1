@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 /LMS_v1/uploads/bookCovers
-/LMS_v2/uploads/bookFiles
+/LMS_v1/uploads/bookFiles

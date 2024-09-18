@@ -219,7 +219,6 @@
     </Compile>
     <Compile Include="MiddleWares\CheckAuth.cs" />
     <Compile Include="MiddleWares\DataSeeder.cs" />
-    <Compile Include="MiddleWares\MailService.cs" />
     <Compile Include="MiddleWares\TimeHelper.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\User.cs" />
